@@ -39,11 +39,15 @@ module MyTools
             
             # reviews = []
         
-            # elements.each do |element|
-            #     review_item = element.find_element(:class_name, 'Jtu6Td')
-            #     local_guide = element.find_element(:class_name, 'FGlxyd')
-            #     star_score = element.find_element(:class_name,"PuaHbe").find_element(:class_name,"Fam1ne").attribute('aria-label').scan(/\d+\.\d+?/)[0].to_f
+            elements.each do |element|
+                review_item = element.find_element(:class_name, 'Jtu6Td')
+                local_guide = element.find_element(:class_name, 'FGlxyd')
+                star_score = element.find_element(:class_name,"PuaHbe").find_element(:class_name,"Fam1ne").attribute('aria-label').scan(/\d+\.\d+?/)[0].to_f
             
+                puts review_item
+                puts local_guide
+                puts star_score
+            end
             #     begin
             #         # まず、 review-full-text というクラス名の要素を持つ（= もっと見るが表示されている）
             #         # という前提で進める
