@@ -1,9 +1,13 @@
 
 module MyTools
     class SeleniumTool
+        def initialize
+            # @url = url
+        end
+
         def access_url
             require 'selenium-webdriver'
-            require 'pry'
+            # require 'pry'
             d = Selenium::WebDriver.for :chrome
 
             wait = Selenium::WebDriver::Wait.new(timeout: 30)

@@ -12,13 +12,7 @@ module MyTools
         end    
 
         def dog
-            p 'wan'
+            p 'nyan'
         end
     end
 end
-# p PlaceDataScraper::SeleniumTool
-# MyTools::PlaceDataScraper.scrape
-
-#PlaceDataScraperのインスタンスを作る
-# scraper = MyTools::PlaceDataScraper.new('new')
-# scraper.dog
