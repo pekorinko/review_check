@@ -1,4 +1,4 @@
-
+require './app/models/review.rb'
 
 module MyTools
     class SeleniumTool
@@ -72,9 +72,9 @@ module MyTools
                     puts review_count
                     puts '問題なし'
                     puts '---------------------------------'
-                    # evaluation = Review.new(content.text, review_count, star_score)
-                    # evaluations.push(evaluation)
-                            
+                    evaluation = Review.new(content.text, review_count, star_score)
+                    evaluations.push(evaluation)
+
                 rescue StandardError
                     puts "なにか問題が発生しました"
                     content = review_item.find_elements(:tag_name, 'span')[0]
@@ -82,16 +82,16 @@ module MyTools
                     review_count = get_review_count(local_guide)
                     puts review_count
                     puts '---------------------------------'
-                #     # evaluation = Review.new(content.text, review_count, star_score)
-                #     # evaluations.push(evaluation)
+                    # evaluation = Review.new(content.text, review_count, star_score)
+                    # evaluations.push(evaluation)
                 end
-                # # evaluations.each.with_index(1) do |evaluation,index|
-                # # puts "-----#{index}番目-----"
-                # # puts evaluation.text
-                # # puts evaluation.count
-                # # puts evaluation.star
-                # # end
-                # puts 'ok'
+                evaluations.each.with_index(1) do |evaluation,index|
+                    puts "-----#{index}番目-----"
+                    puts evaluation.text
+                    puts evaluation.count
+                    puts evaluation.star
+                end
+                
             end
         end
     end
