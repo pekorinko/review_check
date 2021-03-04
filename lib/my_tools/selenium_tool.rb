@@ -68,8 +68,8 @@ module MyTools
                     sleep 0.5
                     content = review_item.find_element(:class_name, 'review-full-text')
                     puts content.text
-                    # review_count = get_review_count(local_guide)
-                    # puts review_count
+                    review_count = get_review_count(local_guide)
+                    puts review_count
                     puts '問題なし'
                     puts '---------------------------------'
                     # evaluation = Review.new(content.text, review_count, star_score)
@@ -79,9 +79,9 @@ module MyTools
                     puts "なにか問題が発生しました"
                     content = review_item.find_elements(:tag_name, 'span')[0]
                     puts content.text
+                    review_count = get_review_count(local_guide)
+                    puts review_count
                     puts '---------------------------------'
-                #     # review_count = get_review_count(local_guide)
-                #     # puts review_count
                 #     # evaluation = Review.new(content.text, review_count, star_score)
                 #     # evaluations.push(evaluation)
                 end
