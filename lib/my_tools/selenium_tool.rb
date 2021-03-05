@@ -1,17 +1,24 @@
-require './app/models/review.rb'
-
 module MyTools
-    class SeleniumTool
-        attr_reader :text
-        def initialize(text,count,star)
-            @text = text
-            @count = count
-            @star = star
+    class SeleniumTool 
+        # #本来であればここでURLを受け取らないといけない、今はReviewsクラスの代わりの役割になってしまっている
+        # #かつ今はURLを受け取れていない、だからこのファイルの固定のURLにしかアクセスできなくなっている
+        # attr_reader :text
+        # def initialize(text,count,star)
+        #     @text = text
+        #     @count = count
+        #     @star = star
+        # end
+        class Review 
+            attr_reader :text, :count, :star
+        
+            def initialize(text, count, star)
+                @text = text
+                @count = count
+                @star = star
+            end
         end
 
-        def access_url
-            
-            
+        def access_url  
             d = Selenium::WebDriver.for :chrome
             
             wait = Selenium::WebDriver::Wait.new(timeout: 30)
@@ -27,7 +34,7 @@ module MyTools
             
             while true do
                 elements = d.find_elements(:css, '.gws-localreviews__google-review.WMbnJf')
-                if elements.length >= 1
+                if elements.length >= 30
                     break
                 end
                 d.execute_script("document.getElementsByClassName('review-dialog-list')[0].scrollTo(0,#{current_height})")
@@ -58,63 +65,37 @@ module MyTools
                 review_item = element.find_element(:class_name, 'Jtu6Td')
                 local_guide = element.find_element(:class_name, 'FGlxyd')
                 star_score = element.find_element(:class_name,"PuaHbe").find_element(:class_name,"Fam1ne").attribute('aria-label').scan(/\d+\.\d+?/)[0].to_f
-            
-                # puts review_item
-                # puts local_guide
-                # puts star_score
                 
                 begin
                     review_item.find_element(:css, '.review-more-link').click
                     sleep 0.5
                     content = review_item.find_element(:class_name, 'review-full-text')
-                    puts content.text
+                    # puts content.text
                     review_count = get_review_count(local_guide)
-                    puts review_count
-                    puts '問題なし'
-                    puts '---------------------------------'
+                    # puts review_count
+                    # evaluation = SeleniumTool.new(content.text, review_count, star_score)
                     evaluation = Review.new(content.text, review_count, star_score)
                     evaluations.push(evaluation)
+                    # puts evaluations
+                    # puts '「問題なし」'
+                    # puts '---------------------------------'
 
                 rescue StandardError
-                    puts "なにか問題が発生しました"
-                    content = review_item.find_elements(:tag_name, 'span')[0]
-                    puts content.text
+                    content = review_item.find_elements(:tag_name, 'span').last
                     review_count = get_review_count(local_guide)
-                    puts review_count
-                    puts '---------------------------------'
-                    # evaluation = Review.new(content.text, review_count, star_score)
-                    # evaluations.push(evaluation)
+                    # evaluation = SeleniumTool.new(content.text, review_count, star_score)
+                    evaluation = Review.new(content.text, review_count, star_score)
+                    evaluations.push(evaluation)
                 end
-                evaluations.each.with_index(1) do |evaluation,index|
-                    puts "-----#{index}番目-----"
-                    puts evaluation.text
-                    puts evaluation.count
-                    puts evaluation.star
-                end
-                
+            end
+            evaluations.each.with_index(1) do |evaluation,index|
+                puts "-----#{index}番目-----"
+                puts evaluation.text
+                puts evaluation.count
+                puts evaluation.star
             end
         end
     end
 end
 
-# class Review
-#     attr_reader :text, :count, :star
 
-#     def initialize(text, count, star)
-#         @text = text
-#         @count = count
-#         @star = star
-#     end
-
-# end
-
-
-# class Place
-#     attr_reader :place_name, :address
-    
-#     def initialize(place_name, address)
-#         @place_name = place_name
-#         @address = address
-#     end
-
-# end
