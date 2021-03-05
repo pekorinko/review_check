@@ -1,23 +1,5 @@
 module MyTools
     class SeleniumTool 
-        # #本来であればここでURLを受け取らないといけない、今はReviewsクラスの代わりの役割になってしまっている
-        # #かつ今はURLを受け取れていない、だからこのファイルの固定のURLにしかアクセスできなくなっている
-        # attr_reader :text
-        # def initialize(text,count,star)
-        #     @text = text
-        #     @count = count
-        #     @star = star
-        # end
-        class Review 
-            attr_reader :text, :count, :star
-        
-            def initialize(text, count, star)
-                @text = text
-                @count = count
-                @star = star
-            end
-        end
-
         def access_url  
             d = Selenium::WebDriver.for :chrome
             
