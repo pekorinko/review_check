@@ -23,6 +23,6 @@ module ReviewCheck
     # config.autoload_paths << Rails.root.join("lib")
 
     # config.paths.add 'lib', eager_load: true 
-    config.autoload_paths += Dir["#{config.root}/lib/**/"]
+    config.paths.add 'lib', eager_load: true
   end
 end
