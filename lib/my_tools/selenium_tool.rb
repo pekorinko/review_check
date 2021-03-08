@@ -46,8 +46,8 @@ module MyTools
             
             puts elements.length
             
-            evaluations = []
-
+            # evaluations = []
+            results = []
         
             elements.each do |element|
                 review_item = element.find_element(:class_name, 'Jtu6Td')
@@ -58,36 +58,23 @@ module MyTools
                     review_item.find_element(:css, '.review-more-link').click
                     sleep 0.5
                     content = review_item.find_element(:class_name, 'review-full-text')
-                    # puts content.text
                     review_count = get_review_count(local_guide)
-                    # puts review_count
-                    # evaluation = SeleniumTool.new(content.text, review_count, star_score)
-
-                    #以下２行消す
-                    evaluation = Review.new(text: content.text, count: review_count, star: star_score)
-                    evaluation.save
-                    #place_data_scraper.rbでselenium_tool.rbで作ったインスタンスを受け取ってデータベースに保存するような設計にしたい
-                    
-                    evaluations.push(evaluation)
-                    # puts evaluations
-                    # puts '「問題なし」'
-                    # puts '---------------------------------'
+                    hash = { text: content.text, star: star_score, count: review_count}
+                    results.push(hash)
 
                 rescue StandardError
                     content = review_item.find_elements(:tag_name, 'span').last
                     review_count = get_review_count(local_guide)
-                    # evaluation = SeleniumTool.new(content.text, review_count, star_score)
-                    evaluation = Review.new(text: content.text, count: review_count, star: star_score)
-                    evaluation.save
-                    evaluations.push(evaluation)
+                    hash = { text: content.text, count: review_count, star: star_score}
+                    results.push(hash)
                 end
             end
-            evaluations.each.with_index(1) do |evaluation,index|
-                puts "-----#{index}番目-----"
-                puts evaluation.text
-                puts evaluation.count
-                puts evaluation.star
-            end
+            # evaluations.each.with_index(1) do |evaluation,index|
+            #     puts "-----#{index}番目-----"
+            #     puts evaluation.text
+            #     puts evaluation.count
+            #     puts evaluation.star
+            # end
         end
     end
 end

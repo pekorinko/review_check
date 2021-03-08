@@ -1,7 +1,6 @@
 class ResultsController < ApplicationController
-  # require 'place_data_scraper.rb'
   def index
-    @msg = 'URLを入力'
+    @reviews = Review.all
   end
 
   def new
