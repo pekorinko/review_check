@@ -1,2 +1,5 @@
-<h1>Results#create</h1>
-<p>Find me in app/views/results/create.html.erb</p>
+<%= form_with model: @place do |form| %>
+    <%= form.text_field :name %>
+    <%= form.submit %>
+<% end %>
+
