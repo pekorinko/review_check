@@ -18,11 +18,6 @@ module ReviewCheck
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
-
-    #参考にしたURL：https://qiita.com/necojackarc/items/fb76352dbea5bdd83366#%E7%B5%90%E8%AB%96
-    # config.autoload_paths << Rails.root.join("lib")
-
-    # config.paths.add 'lib', eager_load: true 
     config.paths.add 'lib', eager_load: true
   end
 end
