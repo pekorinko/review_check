@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
   resources :results
-  # get 'results/new'
-  # get 'results/create'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  # post 'results/new' => 'results#new'
 end
