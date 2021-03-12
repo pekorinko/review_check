@@ -11,15 +11,12 @@ class ResultsController < ApplicationController
     url = params[:url]
     @place = MyTools::PlaceDataScraper.new(url).scrape
   end
-    @review = Review.find(params[:id])
-  def show
 
-  end
+  def show; end
 
   def result_params
-    p "***************************"
+    p '***************************'
     p params
     params.require(:result).permit(:url)
   end
-
 end
