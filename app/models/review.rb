@@ -1,9 +1,5 @@
 class Review < ApplicationRecord
-    attr_reader :text, :count, :star
-
-    def initialize(text, count, star)
-        @text = text
-        @count = count
-        @star = star
-    end
+  validates :text, presence: true
+  validates :count, presence: true
+  validates :star, presence: true
 end
