@@ -5,7 +5,6 @@ module MyTools
     def initialize(url)
       @url = url
     end
-<<<<<<< HEAD
 
     def scrape
       scrape_process = MyTools::SeleniumTool.new(@url)
@@ -33,17 +32,6 @@ module MyTools
       #     address: place[:address],
       #   )
       # end
-=======
-
-    def scrape
-      # Seleniumの処理
-      scrape_process = MyTools::SeleniumTool.new(@url)
-      results = scrape_process.access_url
-      results.each do |result|
-        Review.create(text: result[:text], count: result[:count], star: result[:star])
-      end
-      Review.find(1)
->>>>>>> 6e23f5216bd5a541ac1a577253f9d340480c43b4
     end
   end
 end
