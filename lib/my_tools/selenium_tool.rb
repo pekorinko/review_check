@@ -50,11 +50,7 @@ module MyTools
       end
 
       puts elements.length
-
-      # evaluations = []
       results = []
-
-      # places = []
 
       elements.each do |element|
         review_item = element.find_element(:class_name, 'Jtu6Td')
