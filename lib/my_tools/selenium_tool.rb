@@ -20,24 +20,20 @@ module MyTools
 
     def access_url
       d = Selenium::WebDriver.for :chrome
-
       wait = Selenium::WebDriver::Wait.new(timeout: 30)
-
       d.get(@url)
-
       wait.until { d.find_element(:class_name, 'lcorif').displayed? }
 
-      #スクロールをループで書く
       current_height =
         d.execute_script(
           'return document.getElementsByClassName("review-dialog-list")[0].scrollHeight',
         )
-      elements = []
 
+      @elements = []
       while true
-        elements =
+        @elements =
           d.find_elements(:css, '.gws-localreviews__google-review.WMbnJf')
-        break if elements.length >= 30
+        break if @elements.length >= 30
         d.execute_script(
           "document.getElementsByClassName('review-dialog-list')[0].scrollTo(0,#{current_height})",
         )
@@ -48,11 +44,13 @@ module MyTools
           )
         sleep 5
       end
+    end
 
-      puts elements.length
+    def review_info
+      access_url
       results = []
 
-      elements.each do |element|
+      @elements.each do |element|
         review_item = element.find_element(:class_name, 'Jtu6Td')
         local_guide = element.find_element(:class_name, 'FGlxyd')
         star_score =

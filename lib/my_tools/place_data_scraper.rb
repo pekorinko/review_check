@@ -9,7 +9,7 @@ module MyTools
     def scrape
       scrape_process = MyTools::SeleniumTool.new(@url)
 
-      results = scrape_process.access_url
+      results = scrape_process.review_info
 
       results.each do |result|
         Review.create!(
