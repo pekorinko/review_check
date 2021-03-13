@@ -12,16 +12,11 @@ module MyTools
       results = scrape_process.access_url
 
       results.each do |result|
-        puts '*************************'
-        puts result[:text]
-
-        review =
-          Review.create!(
-            text: result[:text],
-            count: result[:count],
-            star: result[:star],
-          )
-        puts review
+        Review.create!(
+          text: result[:text],
+          count: result[:count],
+          star: result[:star],
+        )
       end
     end
   end
