@@ -18,14 +18,14 @@ module MyTools
         puts result[:text]
 
         review =
-          Review.create(
+          Review.create!(
             text: result[:text],
             count: result[:count],
             star: result[:star],
           )
         puts review
       end
-      Review.create(text: 'こんにちは', count: 4, star: 2.0)
+
       # places.each do |place|
       #   Place.create(
       #     place_name: place[:facility_name],
