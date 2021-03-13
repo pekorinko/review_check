@@ -11,8 +11,6 @@ module MyTools
 
       results = scrape_process.access_url
 
-      # places = scrape_process.access_url
-
       results.each do |result|
         puts '*************************'
         puts result[:text]
@@ -25,13 +23,6 @@ module MyTools
           )
         puts review
       end
-
-      # places.each do |place|
-      #   Place.create(
-      #     place_name: place[:facility_name],
-      #     address: place[:address],
-      #   )
-      # end
     end
   end
 end

@@ -77,11 +77,6 @@ module MyTools
           hash = { text: content.text, count: review_count, star: star_score }
           results.push(hash)
         end
-        # facility = d.find_element(:class_name, 'VUGnzb')
-        # facility_name = facility.find_element(:class_name, 'P5Bobd').text
-        # address = facility.find_element(:class_name, 'T6pBCe').text
-        # facility_hash = { place_name: facility_name, address: address }
-        # places.push(facility_hash)
       end
       return results
     end
