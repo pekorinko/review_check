@@ -78,5 +78,15 @@ module MyTools
       end
       return results
     end
+
+    def place_info
+      facility = d.find_element(:class_name, 'VUGnzb')
+      facility_name = facility.find_element(:class_name, 'P5Bobd').text
+      address = facility.find_element(:class_name, 'T6pBCe').text
+      place = []
+      facility_hash = { place_name: facility_name, address: address }
+      place.push(facility_hash)
+      return place
+    end
   end
 end

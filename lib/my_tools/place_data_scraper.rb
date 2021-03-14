@@ -6,7 +6,7 @@ module MyTools
       @url = url
     end
 
-    def scrape
+    def review_save
       scrape_process = MyTools::SeleniumTool.new(@url)
 
       results = scrape_process.review_info
@@ -18,6 +18,13 @@ module MyTools
           star: result[:star],
         )
       end
+    end
+
+    def place_save
+      scrape_process = MyTools::SeleniumTool.new(@url)
+      results = scrape_process.place_info
+      Place.create!(place_name: 'カオマンガイバザール', address: '東京都三鷹市')
+      # Place.create!(place_name: results[:place_name], results[:address])
     end
   end
 end
