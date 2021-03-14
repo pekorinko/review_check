@@ -4,12 +4,11 @@ module MyTools
 
     def initialize(url)
       @url = url
+      @scrape_process = MyTools::SeleniumTool.new(@url)
     end
 
     def review_save
-      scrape_process = MyTools::SeleniumTool.new(@url)
-
-      results = scrape_process.review_info
+      results = @scrape_process.fetch_reviews
 
       results.each do |result|
         Review.create!(
@@ -21,10 +20,11 @@ module MyTools
     end
 
     def place_save
-      scrape_process = MyTools::SeleniumTool.new(@url)
-      results = scrape_process.place_info
-      Place.create!(place_name: 'カオマンガイバザール', address: '東京都三鷹市')
-      # Place.create!(place_name: results[:place_name], results[:address])
+      result = @scrape_process.fetch_place
+
+      # binding.pry
+      # Place.create!(place_name: 'カオマンガイバザール', address: '東京都三鷹市')
+      Place.create!(place_name: result[:place_name], address: result[:address])
     end
   end
 end
