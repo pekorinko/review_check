@@ -1,2 +1,5 @@
-<h1>URLを入力</h1>
-<%= render 'form', result: @result %>
+<h1>口コミチェックしたいURLを入力</h1>
+<%= form_with url: results_path, method: :post do |form| %>
+    <%= form.text_field :url %>
+    <%= form.submit %>
+<% end %>
