@@ -7,7 +7,7 @@ module MyTools
       @scrape_process = MyTools::SeleniumTool.new(@url)
     end
 
-    def review_save
+    def save_review
       results = @scrape_process.fetch_reviews
 
       results.each do |result|
@@ -19,7 +19,7 @@ module MyTools
       end
     end
 
-    def place_save
+    def save_place
       result = @scrape_process.fetch_place
 
       # binding.pry
