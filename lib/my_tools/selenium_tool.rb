@@ -65,6 +65,10 @@ module MyTools
           review_item.find_element(:css, '.review-more-link').click
           sleep 0.5
           content = review_item.find_element(:class_name, 'review-full-text')
+          if content == nil
+            content ||= ''
+            return
+          end
           review_count = get_review_count(local_guide)
           hash = { text: content.text, count: review_count, star: star_score }
           results.push(hash)

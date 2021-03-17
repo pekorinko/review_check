@@ -21,9 +21,6 @@ module MyTools
 
     def save_place
       result = @scrape_process.fetch_place
-
-      # binding.pry
-      # Place.create!(place_name: 'カオマンガイバザール', address: '東京都三鷹市')
       Place.create!(place_name: result[:place_name], address: result[:address])
     end
   end
