@@ -22,6 +22,13 @@ module MyTools
       end
     end
 
+    def replace
+      if @content == nil
+        @content ||= ''
+        return
+      end
+    end
+
     def access_url
       current_height =
         @d.execute_script(
@@ -64,18 +71,16 @@ module MyTools
         begin
           review_item.find_element(:css, '.review-more-link').click
           sleep 0.5
-          content = review_item.find_element(:class_name, 'review-full-text')
-          if content == nil
-            content ||= ''
-            return
-          end
+          @content = review_item.find_element(:class_name, 'review-full-text')
+          replace
           review_count = get_review_count(local_guide)
-          hash = { text: content.text, count: review_count, star: star_score }
+          hash = { text: @content.text, count: review_count, star: star_score }
           results.push(hash)
         rescue StandardError
-          content = review_item.find_elements(:tag_name, 'span').last
+          @content = review_item.find_elements(:tag_name, 'span').last
+          replace
           review_count = get_review_count(local_guide)
-          hash = { text: content.text, count: review_count, star: star_score }
+          hash = { text: @content.text, count: review_count, star: star_score }
           results.push(hash)
         end
       end
