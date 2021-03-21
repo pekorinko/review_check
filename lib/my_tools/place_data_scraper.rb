@@ -11,7 +11,7 @@ module MyTools
       results = @scrape_process.fetch_reviews
 
       results.each do |result|
-        Review.create!(
+        Review.create(
           text: result[:text],
           count: result[:count],
           star: result[:star],
@@ -21,7 +21,7 @@ module MyTools
 
     def save_place
       result = @scrape_process.fetch_place
-      Place.create!(place_name: result[:place_name], address: result[:address])
+      Place.create(place_name: result[:place_name], address: result[:address])
     end
   end
 end
