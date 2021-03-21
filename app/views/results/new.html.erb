@@ -1,4 +1,5 @@
-<form action='/results/' method='POST'>
-  <label>URLを入力</label>
-  <input type='text' name='url'>
-</form>
+<h1>口コミチェックしたいURLを入力</h1>
+<%= form_with url: results_path, method: :post do |form| %>
+    <%= form.text_field :url %>
+    <%= form.submit %>
+<% end %>

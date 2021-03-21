@@ -1,14 +1,10 @@
 class ResultsController < ApplicationController
-  def index
-    @reviews = Review.all
-  end
-
-  def new
-  end
+  def new; end
 
   def create
-    # url = params[:url]
-    # @place = MyTools::PlaceDataScraper.new(url).scrape
+    url = params[:url]
+    place_data_scraper = MyTools::PlaceDataScraper.new(url)
+    place_data_scraper.save_review
+    place_data_scraper.save_place
   end
-
 end

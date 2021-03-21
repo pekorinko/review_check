@@ -1,3 +1,1 @@
-Rails.application.routes.draw do
-  resources :results
-end
+Rails.application.routes.draw { resources :results, only: %i[new create] }
