@@ -12,7 +12,7 @@ module MyTools
       results = @scrape_process.fetch_reviews
 
       results.each do |result|
-        Review.create!(
+        Review.create(
           text: result[:text],
           count: result[:count],
           star: result[:star],
