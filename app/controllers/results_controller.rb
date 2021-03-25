@@ -8,5 +8,7 @@ class ResultsController < ApplicationController
     place_data_scraper.save_review(@place_id)
     check_credibility = MyTools::CheckCredibility.new(@place_id)
     @result = check_credibility.credibility
+    puts '---------------------------'
+    puts @result
   end
 end
