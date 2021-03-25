@@ -23,9 +23,7 @@ module MyTools
 
     def save_place
       result = @scrape_process.fetch_place
-      place =
-        Place.create(place_name: result[:place_name], address: result[:address])
-      return place.id
+      Place.create(place_name: result[:place_name], address: result[:address])
     end
   end
 end
