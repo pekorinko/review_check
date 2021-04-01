@@ -1,7 +1,7 @@
 <h1>チェック結果</h1>
-<%= @result.place_name %><br>
-<%= @result.address %><br>
-<%= @result.count_ave %><br>
-<%= @result.star_ave %><br>
-<%= @result.text_ave %><br>
+<p>店舗名：<%= @result.place_name %></p>
+<p>住所：<%= @result.address %></p>
+<p>平均投稿数：<%= @result.count_ave %></p>
+<p>平均星評価：<%= @result.star_ave %></p>
+<p>平均文字数：<%= @result.text_ave %></p>
 <%= link_to "戻る",new_result_path %>
