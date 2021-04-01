@@ -31,7 +31,7 @@ module MyTools
       # puts @count_ave
       # puts @text_ave
 
-      return Result.new(@place)
+      return Result.new(@place, @star_ave, @count_ave, @text_ave)
     end
   end
 end
