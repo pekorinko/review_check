@@ -25,12 +25,6 @@ module MyTools
       @count_ave = count_total / counts.length
       @text_ave = text_total / texts.length
 
-      # puts @place.place_name
-      # puts @place.address
-      # puts @star_ave
-      # puts @count_ave
-      # puts @text_ave
-
       return Result.new(@place, @star_ave, @count_ave, @text_ave)
     end
   end
