@@ -16,18 +16,21 @@ ActiveRecord::Schema.define(version: 2021_03_02_124316) do
   enable_extension "plpgsql"
 
   create_table "places", force: :cascade do |t|
-    t.string "place_name"
-    t.string "address"
+    t.string "place_name", null: false
+    t.string "address", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.string "text"
-    t.integer "count"
-    t.float "star"
+    t.string "text", null: false
+    t.integer "count", null: false
+    t.float "star", null: false
+    t.bigint "place_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["place_id"], name: "index_reviews_on_place_id"
   end
 
+  add_foreign_key "reviews", "places"
 end

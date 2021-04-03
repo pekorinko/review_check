@@ -7,7 +7,8 @@ module MyTools
       @scrape_process = MyTools::SeleniumTool.new(@url)
     end
 
-    def save_review
+    #save_reviewがplace_idを受け取れるようにする
+    def save_review(place_id)
       results = @scrape_process.fetch_reviews
 
       results.each do |result|
@@ -15,6 +16,7 @@ module MyTools
           text: result[:text],
           count: result[:count],
           star: result[:star],
+          place_id: place_id,
         )
       end
     end

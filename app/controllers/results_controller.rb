@@ -4,7 +4,7 @@ class ResultsController < ApplicationController
   def create
     url = params[:url]
     place_data_scraper = MyTools::PlaceDataScraper.new(url)
-    place_data_scraper.save_review
-    place_data_scraper.save_place
+    place = place_data_scraper.save_place
+    place_data_scraper.save_review(place.id)
   end
 end
