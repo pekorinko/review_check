@@ -24,8 +24,11 @@ module MyTools
       @star_ave = total / stars.length
       @count_ave = count_total / counts.length
       @text_ave = text_total / texts.length
+      @credibility_rate = '80%'
 
-      return Result.new(@place, @star_ave, @count_ave, @text_ave)
+      return(
+        Result.new(@place, @star_ave, @count_ave, @text_ave, @credibility_rate)
+      )
     end
   end
 end
