@@ -7,7 +7,6 @@ module MyTools
       @scrape_process = MyTools::SeleniumTool.new(@url)
     end
 
-    #save_reviewがplace_idを受け取れるようにする
     def save_review(place_id)
       results = @scrape_process.fetch_reviews
 
@@ -22,8 +21,16 @@ module MyTools
     end
 
     def save_place
+      uri = URI.parse(@url)
+      lrd = uri.fragment.split('=')[1].split(',')[0]
+      place = Place.find_by(lrd: lrd)
+      return place if place.present?
       result = @scrape_process.fetch_place
-      Place.create(place_name: result[:place_name], address: result[:address])
+      Place.create(
+        lrd: lrd,
+        place_name: result[:place_name],
+        address: result[:address],
+      )
     end
   end
 end
