@@ -22,7 +22,12 @@ module MyTools
       @star_ave = total / stars.length
       @count_ave = count_total / counts.length
       @text_ave = text_total / texts.length
-      @credibility_rate = '80%'
+
+      if @count_ave >= 20 and @text_ave >= 50
+        @credibility_rate = '高'
+      else
+        @credibility_rate = '低'
+      end
 
       return(
         Result.new(@place, @star_ave, @count_ave, @text_ave, @credibility_rate)
