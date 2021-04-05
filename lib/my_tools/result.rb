@@ -6,6 +6,7 @@ module MyTools
                 :count_ave,
                 :text_ave,
                 :credibility_rate
+
     def initialize(place, star_ave, count_ave, text_ave, credibility_rate)
       @place_name = place.place_name
       @address = place.address

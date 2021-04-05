@@ -24,16 +24,13 @@ module MyTools
       uri = URI.parse(@url)
       lrd = uri.fragment.split('=')[1].split(',')[0]
       place = Place.find_by(lrd: lrd)
-      if place.present?
-        place
-      else
-        result = @scrape_process.fetch_place
-        Place.create(
-          lrd: lrd,
-          place_name: result[:place_name],
-          address: result[:address],
-        )
-      end
+      return place if place.present?
+      result = @scrape_process.fetch_place
+      Place.create(
+        lrd: lrd,
+        place_name: result[:place_name],
+        address: result[:address],
+      )
     end
   end
 end
