@@ -13,7 +13,6 @@ module MyTools
           review if review.text.size >= 50 and review.count >= 20
         end
 
-      binding.pry
       puts '--------------------'
       puts puts_reviews
       puts '--------------------'
