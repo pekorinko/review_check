@@ -7,6 +7,16 @@ module MyTools
     def credibility
       reviews = Review.where(place_id: @place_id)
 
+      #口コミ文字数５０文字以上かつ投稿件数２０件以上を満たすReviewがほしい
+      puts_reviews =
+        reviews.filter_map do |review|
+          review if review.text.size >= 50 and review.count >= 20
+        end
+
+      binding.pry
+      puts '--------------------'
+      puts puts_reviews
+      puts '--------------------'
       texts = reviews.map { |review| review.text }
       stars = reviews.map { |review| review.star }
       counts = reviews.map { |review| review.count }
@@ -15,11 +25,8 @@ module MyTools
       count_total = 0
       text_total = 0
 
-      puts_texts = texts.filter_map { |text| text.size if text.size >= 50 }
-      puts_counts = counts.filter { |count| count >= 20 }
-      puts '-----------------'
-      puts puts_counts
-      puts '-----------------'
+      # puts_texts = texts.filter_map { |text| text.size if text.size >= 50 }
+      # puts_counts = counts.filter { |count| count >= 20 }
 
       texts.each { |text| text_total = text_total + text.size }
       stars.each { |star| total = total + star }
