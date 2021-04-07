@@ -8,21 +8,21 @@ module MyTools
       reviews = Review.where(place_id: @place_id)
 
       #口コミ文字数５０文字以上かつ投稿件数２０件以上を満たすReviewがほしい
-      puts_reviews =
+      selected_reviews =
         reviews.filter_map do |review|
           review if review.text.size >= 50 and review.count >= 20
         end
 
-      puts '--------------------'
-      puts puts_reviews
-      puts '--------------------'
       texts = reviews.map { |review| review.text }
       stars = reviews.map { |review| review.star }
       counts = reviews.map { |review| review.count }
+      selected_stars =
+        selected_reviews.map { |selected_review| selected_review.star }
 
       total = 0
       count_total = 0
       text_total = 0
+      selected_star_total = 0
 
       # puts_texts = texts.filter_map { |text| text.size if text.size >= 50 }
       # puts_counts = counts.filter { |count| count >= 20 }
@@ -30,11 +30,15 @@ module MyTools
       texts.each { |text| text_total = text_total + text.size }
       stars.each { |star| total = total + star }
       counts.each { |count| count_total = count_total + count }
+      selected_stars.each do |selected_star|
+        selected_star_total = selected_star_total + selected_star
+      end
 
       @place = Place.find_by(id: @place_id)
       @star_ave = total / stars.length
       @count_ave = count_total / counts.length
       @text_ave = text_total / texts.length
+      @credible_star_ave = selected_star_total / selected_stars.length
 
       if @count_ave >= 20 and @text_ave >= 50
         @credibility_rate = '高'
@@ -43,7 +47,14 @@ module MyTools
       end
 
       return(
-        Result.new(@place, @star_ave, @count_ave, @text_ave, @credibility_rate)
+        Result.new(
+          @place,
+          @star_ave,
+          @count_ave,
+          @text_ave,
+          @credibility_rate,
+          @credible_star_ave,
+        )
       )
     end
   end
