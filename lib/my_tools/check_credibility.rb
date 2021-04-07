@@ -6,6 +6,7 @@ module MyTools
 
     def credibility
       reviews = Review.where(place_id: @place_id)
+
       texts = reviews.map { |review| review.text }
       stars = reviews.map { |review| review.star }
       counts = reviews.map { |review| review.count }
@@ -13,6 +14,12 @@ module MyTools
       total = 0
       count_total = 0
       text_total = 0
+
+      puts_texts = texts.filter_map { |text| text.size if text.size >= 50 }
+      puts_counts = counts.filter { |count| count >= 20 }
+      puts '-----------------'
+      puts puts_counts
+      puts '-----------------'
 
       texts.each { |text| text_total = text_total + text.size }
       stars.each { |star| total = total + star }
