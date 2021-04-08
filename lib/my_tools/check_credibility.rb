@@ -35,22 +35,7 @@ module MyTools
       text_ave = text_total / texts.length
       credible_star_ave = selected_star_total / selected_stars.length
 
-      if count_ave >= 20 and text_ave >= 50
-        credibility_rate = '高'
-      else
-        credibility_rate = '低'
-      end
-
-      return(
-        Result.new(
-          place,
-          star_ave,
-          count_ave,
-          text_ave,
-          credibility_rate,
-          credible_star_ave,
-        )
-      )
+      return Result.new(place, star_ave, count_ave, text_ave, credible_star_ave)
     end
   end
 end
