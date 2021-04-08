@@ -6,4 +6,5 @@
 <p>平均文字数：<%= @result.text_ave %></p>
 <p>信憑性度合い：<%= @result.credibility_rate %></p>
 <p>厳選された星評価：<%= @result.credible_star_ave %></p>
+<p>＊厳選された星評価＝文字数50文字以上かつ投稿件数20件以上の投稿者に絞った場合の星評価</p>
 <%= link_to "戻る",new_result_path %>
