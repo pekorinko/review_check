@@ -29,26 +29,26 @@ module MyTools
         selected_star_total = selected_star_total + selected_star
       end
 
-      @place = Place.find_by(id: @place_id)
-      @star_ave = total / stars.length
-      @count_ave = count_total / counts.length
-      @text_ave = text_total / texts.length
-      @credible_star_ave = selected_star_total / selected_stars.length
+      place = Place.find_by(id: @place_id)
+      star_ave = total / stars.length
+      count_ave = count_total / counts.length
+      text_ave = text_total / texts.length
+      credible_star_ave = selected_star_total / selected_stars.length
 
-      if @count_ave >= 20 and @text_ave >= 50
-        @credibility_rate = '高'
+      if count_ave >= 20 and text_ave >= 50
+        credibility_rate = '高'
       else
-        @credibility_rate = '低'
+        credibility_rate = '低'
       end
 
       return(
         Result.new(
-          @place,
-          @star_ave,
-          @count_ave,
-          @text_ave,
-          @credibility_rate,
-          @credible_star_ave,
+          place,
+          star_ave,
+          count_ave,
+          text_ave,
+          credibility_rate,
+          credible_star_ave,
         )
       )
     end
