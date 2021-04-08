@@ -3,6 +3,8 @@ class ResultsController < ApplicationController
 
   def create
     url = params[:url]
+
+    #ここでURLを正規表現できれいにする
     place_data_scraper = MyTools::PlaceDataScraper.new(url)
     place = place_data_scraper.save_place
     place_data_scraper.save_review(place.id)
