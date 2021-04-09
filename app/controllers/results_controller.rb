@@ -6,9 +6,6 @@ class ResultsController < ApplicationController
 
     #ここでURLを正規表現できれいにする
     url = url.split('mv')[0] if url.include?('mv')
-    puts '----------------'
-    puts url
-    puts '----------------'
     place_data_scraper = MyTools::PlaceDataScraper.new(url)
     place = place_data_scraper.save_place
     place_data_scraper.save_review(place.id)
