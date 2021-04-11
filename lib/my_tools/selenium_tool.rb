@@ -2,7 +2,9 @@ module MyTools
   class SeleniumTool
     def initialize(url)
       @url = url
-      @d = Selenium::WebDriver.for :chrome
+      options = Selenium::WebDriver::Chrome::Options.new
+      options.add_argument('--headless')
+      @d = Selenium::WebDriver.for :chrome, options: options
       wait = Selenium::WebDriver::Wait.new(timeout: 30)
       @d.get(@url)
       wait.until { @d.find_element(:class_name, 'lcorif').displayed? }
