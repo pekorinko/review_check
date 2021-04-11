@@ -27,12 +27,17 @@ module MyTools
         @d.execute_script(
           'return document.getElementsByClassName("review-dialog-list")[0].scrollHeight',
         )
-
+      previous_length = 0
       @elements = []
       while true
         @elements =
           @d.find_elements(:css, '.gws-localreviews__google-review.WMbnJf')
-        break if @elements.length >= 30
+
+        #↓口コミが㉚件ないものに関しては現状、無限ループが続いていしまう
+        #①個前の個数と次の個数を比較して両者が同じであればループを抜ける処理に書き換える
+        puts "@elements.length: #{@elements.length}, previous_length: #{previous_length}"
+        break if @elements.length >= 30 || previous_length == @elements.length
+        previous_length = @elements.length
         @d.execute_script(
           "document.getElementsByClassName('review-dialog-list')[0].scrollTo(0,#{current_height})",
         )

@@ -1,1 +1,1 @@
-Rails.application.routes.draw { resources :results, only: %i[new create] }
+Rails.application.routes.draw { resources :results, only: %i[new create index] }
