@@ -8,9 +8,6 @@ class ResultsController < ApplicationController
   def create
     url = params[:url]
 
-    url_filter = MyTools::UrlFilter.new(url)
-    url = url_filter.filter
-
     url_validator = MyTools::UrlValidator.new(url)
     if url_validator.validate
       place_data_scraper = MyTools::PlaceDataScraper.new(url)
@@ -22,5 +19,8 @@ class ResultsController < ApplicationController
       flash.now[:alert] = 'URLが不正です'
       render :new
     end
+
+    url_filter = MyTools::UrlFilter.new(url)
+    url = url_filter.filter
   end
 end
