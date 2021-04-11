@@ -33,7 +33,11 @@ module MyTools
       star_ave = total / stars.length
       count_ave = count_total / counts.length
       text_ave = text_total / texts.length
-      credible_star_ave = selected_star_total / selected_stars.length
+      begin
+        credible_star_ave = selected_star_total / selected_stars.length
+      rescue StandardError
+        credible_star_ave = '厳選された星評価基準を満たす投稿がありません'
+      end
 
       return Result.new(place, star_ave, count_ave, text_ave, credible_star_ave)
     end
