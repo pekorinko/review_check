@@ -11,7 +11,7 @@ module MyTools
       results = @scrape_process.fetch_reviews
       reviews = Review.find_by(place_id: place_id)
 
-      #place_idで探してきたReviewのレコードが既に存在したら既存のレコードを削除する
+      # place_idで探してきたReviewのレコードが既に存在したら既存のレコードを削除する
       Review.where(place_id: place_id).delete_all if reviews.present?
 
       results.each do |result|
