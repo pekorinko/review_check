@@ -7,21 +7,27 @@ class ResultsController < ApplicationController
 
   def create
     url = params[:url]
-
     url_filter = MyTools::UrlFilter.new(url)
-    url = url_filter.filter
-
-    # GoogleのURLで変な要素付きのURLでもurl_validatorでURI.parseしちゃうからお腹壊す
-    # もしhostがgoogleだったらurl_validatorをそもそも起動させないようにする
     url_validator = MyTools::UrlValidator.new(url)
 
-    if url_validator.validate
+    if url.include?('www.google.com')
+      url = url_filter.filter
       place_data_scraper = MyTools::PlaceDataScraper.new(url)
       place = place_data_scraper.save_place
       place_data_scraper.save_review(place.id)
       check_credibility = MyTools::CheckCredibility.new(place.id)
       @result = check_credibility.credibility
-    else
+    end
+
+    if url.exclude?('www.google.com') && url_validator.validate
+      # GoogleのURLで変な要素付きのURLでもurl_validatorでURI.parseしちゃうからお腹壊す
+      # もしhostがgoogleじゃなかった時だけ「url_validator.validate」を起動させたい
+      place_data_scraper = MyTools::PlaceDataScraper.new(url)
+      place = place_data_scraper.save_place
+      place_data_scraper.save_review(place.id)
+      check_credibility = MyTools::CheckCredibility.new(place.id)
+      @result = check_credibility.credibility
+    elsif url.exclude?('www.google.com') && !url_validator.validate
       flash.now[:alert] = 'URLが不正です'
       render :new
     end
