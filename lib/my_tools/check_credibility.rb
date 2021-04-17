@@ -6,6 +6,11 @@ module MyTools
 
     def credibility
       reviews = Review.where(place_id: @place_id)
+      puts '====================='
+      puts 'reviews↓'
+      puts reviews
+      puts @place_id
+      puts '====================='
       selected_reviews =
         reviews.filter_map do |review|
           review if review.text.size >= 50 and review.count >= 20
@@ -30,6 +35,14 @@ module MyTools
       end
 
       place = Place.find_by(id: @place_id)
+
+      # 以下のコード試したけど駄目だった
+      # place = Place.find_or_create_by(id: @place_id)
+      puts '---------------'
+      puts place
+      puts @place_id
+      puts '---------------'
+
       star_ave = total / stars.length
       count_ave = count_total / counts.length
       text_ave = text_total / texts.length
@@ -39,7 +52,8 @@ module MyTools
         credible_star_ave = '厳選された星評価基準を満たす投稿がありません'
       end
 
-      Result.create(
+      # place_name: place.place_name, address: place.address,の部分はPlaceと関連付けを行っているため書き方変える必要あり
+      Result.create!(
         place_name: place.place_name,
         address: place.address,
         star_ave: star_ave,

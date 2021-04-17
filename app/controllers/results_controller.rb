@@ -7,6 +7,11 @@ class ResultsController < ApplicationController
 
   def new; end
 
+  def show
+    # DBから引っ張ってくるための処理
+    @result = Result.find(params[:id])
+  end
+
   def create
     @url = params[:url]
 
@@ -20,12 +25,22 @@ class ResultsController < ApplicationController
       @url = url_validator.validate
       place_data_scraper = MyTools::PlaceDataScraper.new(@url)
       place = place_data_scraper.save_place
-      place_data_scraper.save_review(place.id)
-      check_credibility = MyTools::CheckCredibility.new(place.id)
+      @place_id = place.id
+      place_data_scraper.save_review(@place_id)
+      check_credibility = MyTools::CheckCredibility.new(@place_id)
+      puts '**************'
+      puts place.id
+      puts '**************'
       @result = check_credibility.credibility
+
+      # resultコントローラのshowに飛ぶ /results/:id にリダイレクトされる このコードはこういうものだから
+      # redirect_to @resultでも同じ働きをする
+      # 以下を書くと結果画面が表示されずに入力画面に行ってしまう
+      redirect_to results_path(@result)
     elsif url.exclude?('www.google.com') && !url_validator.validate
       flash.now[:alert] = 'URLが不正です'
       render :new
     end
+    # redirect_to results_path(@result)
   end
 end

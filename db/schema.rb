@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_12_084426) do
+ActiveRecord::Schema.define(version: 2021_04_15_081021) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,8 @@ ActiveRecord::Schema.define(version: 2021_04_12_084426) do
     t.float "credible_star_ave"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "place_id"
+    t.index ["place_id"], name: "index_results_on_place_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -45,5 +47,6 @@ ActiveRecord::Schema.define(version: 2021_04_12_084426) do
     t.index ["place_id"], name: "index_reviews_on_place_id"
   end
 
+  add_foreign_key "results", "places"
   add_foreign_key "reviews", "places"
 end
