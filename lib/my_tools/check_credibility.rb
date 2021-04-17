@@ -39,7 +39,7 @@ module MyTools
       # 以下のコード試したけど駄目だった
       # place = Place.find_or_create_by(id: @place_id)
       puts '---------------'
-      puts place
+      puts place.id
       puts @place_id
       puts '---------------'
 
@@ -60,6 +60,7 @@ module MyTools
         count_ave: count_ave,
         text_ave: text_ave,
         credible_star_ave: credible_star_ave,
+        place_id: @place_id,
       )
     end
   end

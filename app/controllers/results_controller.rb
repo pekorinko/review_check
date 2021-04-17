@@ -28,9 +28,6 @@ class ResultsController < ApplicationController
       @place_id = place.id
       place_data_scraper.save_review(@place_id)
       check_credibility = MyTools::CheckCredibility.new(@place_id)
-      puts '**************'
-      puts place.id
-      puts '**************'
       @result = check_credibility.credibility
 
       # resultコントローラのshowに飛ぶ /results/:id にリダイレクトされる このコードはこういうものだから
