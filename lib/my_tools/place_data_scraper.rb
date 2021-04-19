@@ -14,7 +14,7 @@ module MyTools
       Review.where(place_id: place_id).delete_all if reviews.present?
 
       results.each do |result|
-        Review.create!(
+        Review.create(
           text: result[:text],
           count: result[:count],
           star: result[:star],
@@ -29,7 +29,7 @@ module MyTools
       place = Place.find_by(lrd: lrd)
       return place if place.present?
       result = @scrape_process.fetch_place
-      Place.create!(
+      Place.create(
         lrd: lrd,
         place_name: result[:place_name],
         address: result[:address],
