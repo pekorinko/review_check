@@ -42,12 +42,10 @@ module MyTools
           "document.getElementsByClassName('review-dialog-list')[0].scrollTo(0,#{current_height})",
         )
 
-        # sleep 5
         current_height =
           @d.execute_script(
             'return document.getElementsByClassName("review-dialog-list")[0].scrollHeight',
           )
-        # sleep 5
       end
     end
 
@@ -70,7 +68,6 @@ module MyTools
         begin
           review_item.find_element(:css, '.review-more-link').click
 
-          # sleep 0.5
           @content =
             review_item.find_element(:class_name, 'review-full-text') || ''
           review_count = get_review_count(local_guide)
