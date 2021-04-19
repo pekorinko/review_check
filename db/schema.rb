@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_15_081021) do
+ActiveRecord::Schema.define(version: 2021_04_19_060557) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,8 +25,6 @@ ActiveRecord::Schema.define(version: 2021_04_15_081021) do
   end
 
   create_table "results", force: :cascade do |t|
-    t.text "place_name"
-    t.text "address"
     t.float "star_ave"
     t.integer "count_ave"
     t.integer "text_ave"

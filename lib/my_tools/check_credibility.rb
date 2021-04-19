@@ -41,8 +41,6 @@ module MyTools
       end
 
       Result.create!(
-        place_name: place.place_name,
-        address: place.address,
         star_ave: star_ave,
         count_ave: count_ave,
         text_ave: text_ave,
