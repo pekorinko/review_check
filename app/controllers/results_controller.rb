@@ -27,13 +27,14 @@ class ResultsController < ApplicationController
       place = place_data_scraper.save_place
       @place_id = place.id
       place_data_scraper.save_review(@place_id)
+      @place = place_data_scraper.save_place
       check_credibility = MyTools::CheckCredibility.new(@place_id)
       @result = check_credibility.credibility
 
       # resultコントローラのshowに飛ぶ /results/:id にリダイレクトされる このコードはこういうものだから
       # redirect_to @resultでも同じ働きをする
       # 以下を書くと結果画面が表示されずに入力画面に行ってしまう
-      redirect_to results_path(@result)
+      # redirect_to results_path(@result)
     elsif url.exclude?('www.google.com') && !url_validator.validate
       flash.now[:alert] = 'URLが不正です'
       render :new
