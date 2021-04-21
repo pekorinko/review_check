@@ -5,7 +5,17 @@ class ResultsController < ApplicationController
     redirect_to new_result_path
   end
 
-  def new; end
+  def new
+    @result_histories = Result.last(5)
+    # puts '============='
+    # puts @result_history.place_id
+    # puts '============='
+    # @place_history = Place.find(@result_history.place_id)
+    # puts '============='
+    # puts @result_history
+    # puts @place_history
+    # puts '============='
+  end
 
   def show
     @result = Result.find(params[:id])

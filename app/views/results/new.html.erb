@@ -4,3 +4,11 @@
     <%= form.text_field :url %>
     <%= form.submit %>
 <% end %>
+<h1>直近の検索結果</h1>
+<% @result_histories.each do |result_history| %>
+    <p>平均投稿数：<%= result_history.count_ave %></p>
+    <p>平均星評価：<%= result_history.star_ave %></p>
+    <p>平均文字数：<%= result_history.text_ave %></p>
+    <p>厳選された星評価：<%= result_history.credible_star_ave %></p>
+<% end %>
+<p>＊厳選された星評価＝文字数50文字以上かつ投稿件数20件以上の投稿者に絞った場合の星評価</p>
