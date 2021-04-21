@@ -6,7 +6,19 @@ class ResultsController < ApplicationController
   end
 
   def new
-    @result_histories = Result.last(5)
+    result_histories = Result.last(5)
+    @histories = []
+    result_histories.each do |result_history|
+      place = Place.find(result_history.place_id)
+      history =
+        MyTools::History.new(
+          result_history.id,
+          place.place_name,
+          result_history.star_ave,
+          result_history.credible_star_ave,
+        )
+      @histories.push(history)
+    end
   end
 
   def show
