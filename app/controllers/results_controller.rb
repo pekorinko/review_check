@@ -7,14 +7,6 @@ class ResultsController < ApplicationController
 
   def new
     @result_histories = Result.last(5)
-    # puts '============='
-    # puts @result_history.place_id
-    # puts '============='
-    # @place_history = Place.find(@result_history.place_id)
-    # puts '============='
-    # puts @result_history
-    # puts @place_history
-    # puts '============='
   end
 
   def show

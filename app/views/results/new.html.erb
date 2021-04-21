@@ -6,6 +6,9 @@
 <% end %>
 <h1>直近の検索結果</h1>
 <% @result_histories.each do |result_history| %>
+    <% @place_histories = Place.find(result_history.place_id) %>
+    <p>店舗名：<%= @place_histories.place_name %></p>
+    <p>住所：<%= @place_histories.address %></p>
     <p>平均投稿数：<%= result_history.count_ave %></p>
     <p>平均星評価：<%= result_history.star_ave %></p>
     <p>平均文字数：<%= result_history.text_ave %></p>
