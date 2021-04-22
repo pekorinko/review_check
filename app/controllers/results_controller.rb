@@ -13,6 +13,7 @@ class ResultsController < ApplicationController
       history =
         MyTools::History.new(
           result_history.id,
+          place.id,
           place.place_name,
           result_history.star_ave,
           result_history.credible_star_ave,
