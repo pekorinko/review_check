@@ -36,7 +36,6 @@ module MyTools
           @d.find_elements(:css, '.gws-localreviews__google-review.WMbnJf')
 
         # 取得した口コミが30件以上に達した時、または1個前で取得した口コミ件数と次のスクロールで取得した件数を比較して両者が同じであればループを抜ける処理
-        puts "@elements.length: #{@elements.length}, previous_length: #{previous_length}"
         break if @elements.length >= 30 || previous_length == @elements.length
         previous_length = @elements.length
         @d.execute_script(
