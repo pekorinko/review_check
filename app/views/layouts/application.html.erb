@@ -20,6 +20,13 @@
           </li>
         </ul>
       </div>
+      <div class="container">
+        <% if flash.notice %>
+          <div class="alert alert-success">
+            <%= flash.notice %>
+          </div>
+        <% end %>
+      </div>
     </header>
     <%= yield %>
   </body>

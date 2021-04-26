@@ -7,7 +7,9 @@ class ResultsController < ApplicationController
 
   def new
     # result_histories = Result.distinct(:place_id).last(5)
-
+    puts '----------------'
+    puts request.ip
+    puts '----------------'
     result_histories =
       Result.select('DISTINCT ON (place_id) *').order(place_id: :desc).limit(5)
 
