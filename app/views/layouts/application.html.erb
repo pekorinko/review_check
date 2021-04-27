@@ -13,11 +13,17 @@
   <body>
     <header class="navbar navbar-expand-sm navbar-light bg-light">
       <div class="container">
-        <%= link_to "review_check", class: "navbar-brand mr-auto" %>
+        <%= link_to "review_check", root_path, class: "navbar-brand mr-auto" %>
         <ul class="navbar-nav">
-          <li class="nav-item">
-            <%= link_to "GitHubでログイン", "/auth/github", class: "nav-link", method: :post %>
-          </li>
+          <% if logged_in? %>
+            <li class="nav-item">
+              <%= link_to "ログアウト", logout_path, class: "nav-link", method: :delete %>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to "GitHubでログイン", "/auth/github", class: "nav-link", method: :post %>
+            </li>
+          <% end %>
         </ul>
       </div>
       <div class="container">
