@@ -14,17 +14,18 @@
     <header class="navbar navbar-expand-sm navbar-light bg-light">
       <div class="container">
         <%= link_to "review_check", root_path, class: "navbar-brand mr-auto" %>
-        <ul class="navbar-nav">
+        <div class="navbar-nav">
           <% if logged_in? %>
-            <li class="nav-item">
+            <div class="nav-item">
+              <p>ようこそ <%= current_user.name %>さん</p>
               <%= link_to "ログアウト", logout_path, class: "nav-link", method: :delete %>
-            </li>
+            </div>
           <% else %>
-            <li class="nav-item">
+            <div class="nav-item">
               <%= link_to "GitHubでログイン", "/auth/github", class: "nav-link", method: :post %>
-            </li>
+            </div>
           <% end %>
-        </ul>
+        </div>
       </div>
       <div class="container">
         <% if flash.notice %>
