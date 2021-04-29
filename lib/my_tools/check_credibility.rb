@@ -4,13 +4,8 @@ module MyTools
       @place_id = place_id
     end
 
-    def credibility
+    def credibility(user_id)
       reviews = Review.where(place_id: @place_id)
-
-      user = User.find(1)
-      puts '==============='
-      puts user
-      puts '==============='
 
       selected_reviews =
         reviews.filter_map do |review|
@@ -52,7 +47,7 @@ module MyTools
         text_ave: text_ave,
         credible_star_ave: credible_star_ave,
         place_id: @place_id,
-        user_id: 1,
+        user_id: user_id,
       )
     end
   end

@@ -42,7 +42,8 @@ class ResultsController < ApplicationController
       place_data_scraper.save_review(@place_id)
       @place = place_data_scraper.save_place
       check_credibility = MyTools::CheckCredibility.new(@place_id)
-      @result = check_credibility.credibility
+      user_id = session[:user_id]
+      @result = check_credibility.credibility(user_id)
       redirect_to result_path(@result)
     elsif url.exclude?('www.google.com') && !url_validator.validate
       redirect_to root_path, notice: '不正なURLです'
