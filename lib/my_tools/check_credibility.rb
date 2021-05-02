@@ -30,6 +30,7 @@ module MyTools
       end
 
       place = Place.find_by(id: @place_id)
+
       star_ave = total / stars.length
       count_ave = count_total / counts.length
       text_ave = text_total / texts.length
@@ -39,7 +40,13 @@ module MyTools
         credible_star_ave = '厳選された星評価基準を満たす投稿がありません'
       end
 
-      return Result.new(place, star_ave, count_ave, text_ave, credible_star_ave)
+      Result.create!(
+        star_ave: star_ave,
+        count_ave: count_ave,
+        text_ave: text_ave,
+        credible_star_ave: credible_star_ave,
+        place_id: @place_id,
+      )
     end
   end
 end

@@ -2,7 +2,9 @@ module MyTools
   class SeleniumTool
     def initialize(url)
       @url = url
-      @d = Selenium::WebDriver.for :chrome
+      options = Selenium::WebDriver::Chrome::Options.new
+      options.add_argument('--headless')
+      @d = Selenium::WebDriver.for :chrome, options: options
       wait = Selenium::WebDriver::Wait.new(timeout: 30)
       @d.get(@url)
       wait.until { @d.find_element(:class_name, 'lcorif').displayed? }
@@ -39,12 +41,11 @@ module MyTools
         @d.execute_script(
           "document.getElementsByClassName('review-dialog-list')[0].scrollTo(0,#{current_height})",
         )
-        sleep 5
+
         current_height =
           @d.execute_script(
             'return document.getElementsByClassName("review-dialog-list")[0].scrollHeight',
           )
-        sleep 5
       end
     end
 
@@ -66,7 +67,7 @@ module MyTools
 
         begin
           review_item.find_element(:css, '.review-more-link').click
-          sleep 0.5
+
           @content =
             review_item.find_element(:class_name, 'review-full-text') || ''
           review_count = get_review_count(local_guide)

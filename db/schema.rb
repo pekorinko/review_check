@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_03_053904) do
+ActiveRecord::Schema.define(version: 2021_04_25_015442) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,17 @@ ActiveRecord::Schema.define(version: 2021_04_03_053904) do
     t.index ["lrd"], name: "index_places_on_lrd", unique: true
   end
 
+  create_table "results", force: :cascade do |t|
+    t.float "star_ave"
+    t.integer "count_ave"
+    t.integer "text_ave"
+    t.float "credible_star_ave"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "place_id"
+    t.index ["place_id"], name: "index_results_on_place_id"
+  end
+
   create_table "reviews", force: :cascade do |t|
     t.string "text", null: false
     t.integer "count", null: false
@@ -34,5 +45,16 @@ ActiveRecord::Schema.define(version: 2021_04_03_053904) do
     t.index ["place_id"], name: "index_reviews_on_place_id"
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string "provider", null: false
+    t.string "uid", null: false
+    t.string "name", null: false
+    t.string "image_url", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true
+  end
+
+  add_foreign_key "results", "places"
   add_foreign_key "reviews", "places"
 end

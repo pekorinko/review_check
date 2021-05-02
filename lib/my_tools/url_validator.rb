@@ -5,8 +5,11 @@ module MyTools
     end
 
     def validate
-      uri = URI.parse(@url)
-      uri.host == 'www.google.com' ? true : false
+      if @url.include?('www.google.com')
+        return @url
+      else
+        false
+      end
     end
   end
 end
