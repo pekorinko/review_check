@@ -1,6 +1,4 @@
 class ResultsController < ApplicationController
-  attr_reader :url
-
   def index
     redirect_to new_result_path
   end
