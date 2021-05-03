@@ -19,7 +19,44 @@ class ResultsController < ApplicationController
 
   def new
     result_histories =
-      Result.select('DISTINCT ON (place_id) *').order(place_id: :desc).limit(5)
+      #エラーは出ないが日付順に並び替え出来ない（元のコード）
+      # Result.select('DISTINCT ON (place_id) *').order(place_id: :desc).limit(5)
+
+      #エラーは出ないが日付順に並び替え出来ない_その２
+      Result
+        .select('DISTINCT ON (place_id) *')
+        .order(place_id: :desc)
+        .order(created_at: :desc)
+        .limit(5)
+
+    # エラーは出ないがplace_idが昇順で並んでしまう
+    # Result
+    #   .select('DISTINCT ON (place_id) *')
+    #   .order(:place_id)
+    #   .order(created_at: :desc)
+    #   .limit(5)
+
+    # 右記エラーが出る→ActiveModel::MissingAttributeError (missing attribute: star_ave)
+    # Result
+    #   .select(:place_id)
+    #   .where(id: Result.select('DISTINCT ON (place_id) id'))
+    #   .order(:place_id, created_at: :desc)
+    #   .order(created_at: :desc)
+
+    # 右記エラーが出る→ActiveRecord::StatementInvalid (PG::SyntaxError: ERROR:  subquery has too many columns
+    # Result
+    #   .select(:place_id)
+    #   .where(id: Result.select('DISTINCT ON (place_id) *'))
+    #   .order(:place_id, created_at: :desc)
+    #   .order(created_at: :desc)
+
+    # Result
+    #   .select(:place_id)
+    #   .where(id: Result.select('DISTINCT ON (place_id) *'))
+    #   .order(:place_id, created_at: :desc)
+    #   .order(created_at: :desc)
+    #   .limit(5)
+
     @histories =
       result_histories.map do |result_history|
         place = Place.find(result_history.place_id)
