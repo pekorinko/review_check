@@ -8,5 +8,6 @@
     <p>店舗名：<%= history.place_name %></p>
     <p>平均星評価：<%= history.star_ave %></p>
     <p>厳選された星評価：<%= history.credible_star_ave %></p>
+    <%= link_to "詳細へ", result_path(history.result_id) %>
 <% end %>
 <p>＊厳選された星評価＝文字数50文字以上かつ投稿件数20件以上の投稿者に絞った場合の星評価</p>
