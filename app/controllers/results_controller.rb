@@ -1,6 +1,4 @@
 class ResultsController < ApplicationController
-  attr_reader :url
-
   def index
     redirect_to new_result_path
   end
@@ -38,10 +36,10 @@ class ResultsController < ApplicationController
       @url = url_validator.validate
       place_data_scraper = MyTools::PlaceDataScraper.new(@url)
       place = place_data_scraper.save_place
-      @place_id = place.id
-      place_data_scraper.save_review(@place_id)
+      place_id = place.id
+      place_data_scraper.save_review(place_id)
       @place = place_data_scraper.save_place
-      check_credibility = MyTools::CheckCredibility.new(@place_id)
+      check_credibility = MyTools::CheckCredibility.new(place_id)
       @result = check_credibility.credibility
       redirect_to result_path(@result)
     elsif url.exclude?('www.google.com') && !url_validator.validate
