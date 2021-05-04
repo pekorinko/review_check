@@ -2,7 +2,12 @@ class ResultsController < ApplicationController
   skip_before_action :authenticate, except: :index
 
   def index
-    search_histories = current_user.results.last(5)
+    search_histories =
+      current_user
+        .results
+        .select('DISTINCT ON (place_id) *')
+        .order(place_id: :desc)
+        .limit(5)
     @search_histories =
       search_histories.map do |search_history|
         place = Place.find(search_history.place_id)
