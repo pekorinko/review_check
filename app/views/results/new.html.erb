@@ -1,8 +1,3 @@
-<h1>口コミチェックしたいURLを入力</h1>
-<%= form_with url: results_path, method: :post do |form| %>
-    <%= form.text_field :url %>
-    <%= form.submit %>
-<% end %>
 <h1>直近の検索結果</h1>
 <% @histories.each do |history| %>
     <p>店舗名：<%= history.place_name %></p>

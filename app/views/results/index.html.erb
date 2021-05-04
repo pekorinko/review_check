@@ -1,0 +1,7 @@
+<h1><%= current_user.name %>さんの閲覧履歴</h1>
+<% @search_histories.each do |search_history| %>
+    <p>店舗名：<%= search_history.place_name %></p>
+    <p>平均星評価：<%= search_history.star_ave %></p>
+    <p>厳選された星評価：<%= search_history.credible_star_ave %></p>
+    <%= link_to "詳細へ", result_path(search_history.result_id) %>
+<% end %>
