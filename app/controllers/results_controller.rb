@@ -22,20 +22,8 @@ class ResultsController < ApplicationController
   end
 
   def new
-    result_histories =
+    @result_histories =
       Result.select('DISTINCT ON (place_id) *').order(place_id: :desc).limit(5)
-    @histories =
-      result_histories.map do |result_history|
-        place = Place.find(result_history.place_id)
-        history =
-          MyTools::History.new(
-            result_history.id,
-            place.id,
-            place.place_name,
-            result_history.star_ave,
-            result_history.credible_star_ave,
-          )
-      end
   end
 
   def show
@@ -57,8 +45,8 @@ class ResultsController < ApplicationController
       place_id = place.id
       place_data_scraper.save_review(place_id)
       @place = place_data_scraper.save_place
-      check_credibility = MyTools::CheckCredibility.new(place_id)
       user_id = session[:user_id]
+      check_credibility = MyTools::CheckCredibility.new(place_id)
       @result = check_credibility.credibility(user_id)
       redirect_to result_path(@result)
     elsif @url.exclude?('www.google.com') && !url_validator.validate
