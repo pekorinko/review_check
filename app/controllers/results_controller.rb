@@ -3,7 +3,10 @@ class ResultsController < ApplicationController
     redirect_to new_result_path
   end
 
-  def new; end
+  def new
+    @result_histories =
+      Result.select('DISTINCT ON (place_id) *').order(place_id: :desc).limit(5)
+  end
 
   def show
     @result = Result.find(params[:id])

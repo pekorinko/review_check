@@ -10,7 +10,6 @@ module MyTools
     def save_review(place_id)
       results = @scrape_process.fetch_reviews
       reviews = Review.find_by(place_id: place_id)
-
       Review.where(place_id: place_id).delete_all if reviews.present?
 
       results.each do |result|
