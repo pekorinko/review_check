@@ -16,10 +16,8 @@ class ResultsController < ApplicationController
   def create
     @url = params[:url]
 
-    if @url.include?('www.google.com')
-      url_filter = MyTools::UrlFilter.new(@url)
-      @url = url_filter.filter
-    end
+    url_filter = MyTools::UrlFilter.new(@url)
+    @url = url_filter.filter
 
     url_validator = MyTools::UrlValidator.new(@url)
     if url_validator.validate
@@ -33,8 +31,7 @@ class ResultsController < ApplicationController
       @result = check_credibility.credibility
       redirect_to result_path(@result)
     elsif url.exclude?('www.google.com') && !url_validator.validate
-      flash.now[:alert] = 'URLが不正です'
-      render :new
+      redirect_to root_path, notice: '不正なURLです'
     end
   end
 end
