@@ -1,4 +1,5 @@
 class ResultsController < ApplicationController
+  
   attr_reader :url
   skip_before_action :authenticate, except: :index
 
@@ -18,20 +19,8 @@ class ResultsController < ApplicationController
   end
 
   def new
-    result_histories =
+    @result_histories =
       Result.select('DISTINCT ON (place_id) *').order(place_id: :desc).limit(5)
-    @histories =
-      result_histories.map do |result_history|
-        place = Place.find(result_history.place_id)
-        history =
-          MyTools::History.new(
-            result_history.id,
-            place.id,
-            place.place_name,
-            result_history.star_ave,
-            result_history.credible_star_ave,
-          )
-      end
   end
 
   def show
@@ -50,12 +39,12 @@ class ResultsController < ApplicationController
       @url = url_validator.validate
       place_data_scraper = MyTools::PlaceDataScraper.new(@url)
       place = place_data_scraper.save_place
-      @place_id = place.id
-      place_data_scraper.save_review(@place_id)
+      place_id = place.id
+      place_data_scraper.save_review(place_id)
       @place = place_data_scraper.save_place
-      check_credibility = MyTools::CheckCredibility.new(@place_id)
       user_id = session[:user_id]
-      @result = check_credibility.credibility(user_id)
+      check_credibility = MyTools::CheckCredibility.new(place_id)
+      @result = check_credibility.credibility
       redirect_to result_path(@result)
     elsif url.exclude?('www.google.com') && !url_validator.validate
       redirect_to root_path, notice: '不正なURLです'

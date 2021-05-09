@@ -1,8 +1,7 @@
-<%= flash[:alert] %>
 <h1>直近の検索結果</h1>
-<% @histories.each do |history| %>
-    <p>店舗名：<%= history.place_name %></p>
-    <p>平均星評価：<%= history.star_ave %></p>
-    <p>厳選された星評価：<%= history.credible_star_ave %></p>
+<% @result_histories.each do |result_history| %>
+    <p>店舗名：<%= result_history.place.place_name %></p>
+    <p>住所：<%= result_history.place.address %></p>
+    <p>厳選された星評価：<%= result_history.credible_star_ave %></p>
 <% end %>
 <p>＊厳選された星評価＝文字数50文字以上かつ投稿件数20件以上の投稿者に絞った場合の星評価</p>
