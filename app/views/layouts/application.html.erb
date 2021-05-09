@@ -11,6 +11,30 @@
   </head>
 
   <body>
+    <header class="navbar navbar-expand-sm navbar-light bg-light">
+      <div class="container">
+        <%= link_to "review_check", root_path, class: "navbar-brand mr-auto" %>
+        <div class="navbar-nav">
+          <% if logged_in? %>
+            <div class="nav-item">
+              <p>ようこそ <%= current_user.name %>さん</p>
+              <%= link_to "ログアウト", logout_path, class: "nav-link", method: :delete %>
+            </div>
+          <% else %>
+            <div class="nav-item">
+              <%= link_to "GitHubでログイン", "/auth/github", class: "nav-link", method: :post %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="container">
+        <% if flash.notice %>
+          <div class="alert alert-success">
+            <%= flash.notice %>
+          </div>
+        <% end %>
+      </div>
+    </header>
     <%= yield %>
   </body>
 </html>
