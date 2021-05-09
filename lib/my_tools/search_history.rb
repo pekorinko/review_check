@@ -1,5 +1,5 @@
 module MyTools
-  class History
+  class SearchHistory
     attr_reader :result_id,
                 :place_id,
                 :place_name,

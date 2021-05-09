@@ -1,23 +1,26 @@
 class ResultsController < ApplicationController
+  
+  attr_reader :url
+  skip_before_action :authenticate, except: :index
+
   def index
-    redirect_to new_result_path
+    search_histories = current_user.results.last(5)
+    @search_histories =
+      search_histories.map do |search_history|
+        place = Place.find(search_history.place_id)
+        MyTools::SearchHistory.new(
+          search_history.id,
+          place.id,
+          place.place_name,
+          search_history.star_ave,
+          search_history.credible_star_ave,
+        )
+      end
   end
 
   def new
-    result_histories =
+    @result_histories =
       Result.select('DISTINCT ON (place_id) *').order(place_id: :desc).limit(5)
-    @histories =
-      result_histories.map do |result_history|
-        place = Place.find(result_history.place_id)
-        history =
-          MyTools::History.new(
-            result_history.id,
-            place.id,
-            place.place_name,
-            result_history.star_ave,
-            result_history.credible_star_ave,
-          )
-      end
   end
 
   def show
@@ -39,6 +42,7 @@ class ResultsController < ApplicationController
       place_id = place.id
       place_data_scraper.save_review(place_id)
       @place = place_data_scraper.save_place
+      user_id = session[:user_id]
       check_credibility = MyTools::CheckCredibility.new(place_id)
       @result = check_credibility.credibility
       redirect_to result_path(@result)
