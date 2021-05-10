@@ -1,8 +1,6 @@
 class ResultsController < ApplicationController
   skip_before_action :authenticate, except: :index
 
-  # add_flash_types :success, :info, :warning, :danger
-
   def index
     search_histories =
       current_user
@@ -50,13 +48,8 @@ class ResultsController < ApplicationController
       user_id = session[:user_id]
       check_credibility = MyTools::CheckCredibility.new(place_id)
       @result = check_credibility.credibility(user_id)
-
-      # redirect_to result_path(@result)
-      # redirect_to action: 'show'
-      # redirect_to controller: :get, action: :show
+      redirect_to result_path(@result)
     elsif @url.exclude?('www.google.com') && !url_validator.validate
-      # flash.now[:info] = '不正なURLです'
-      # redirect_to root_path
       redirect_to root_path, notice: '不正なURLです'
     end
   end
