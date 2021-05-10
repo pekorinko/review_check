@@ -1,9 +1,11 @@
-<h1>チェック結果</h1>
-<p>店舗名：<%= @place.place_name %></p>
-<p>住所：<%= @place.address %></p>
-<p>平均投稿数：<%= @result.count_ave %></p>
-<p>平均星評価：<%= @result.star_ave %></p>
-<p>平均文字数：<%= @result.text_ave %></p>
-<p>厳選された星評価：<%= @result.credible_star_ave %></p>
-<p>＊厳選された星評価＝文字数50文字以上かつ投稿件数20件以上の投稿者に絞った場合の星評価</p>
-<%= link_to "戻る",new_result_path %>
+<h2 class="mt-3 mb-3">チェック結果</h2>
+<div class="mt-3 mb-3">
+    <p>店舗名：<%= @place.place_name %></p>
+    <p>住所：<%= @place.address %></p>
+    <p>平均投稿数：<%= @result.count_ave %></p>
+    <p>平均星評価：<%= @result.star_ave %></p>
+    <p>平均文字数：<%= @result.text_ave %></p>
+    <p>厳選された星評価：<%= @result.credible_star_ave %></p>
+</div>
+    <p>＊厳選された星評価＝文字数50文字以上かつ投稿件数20件以上の投稿者に絞った場合の星評価</p>
+    <%= link_to "戻る",new_result_path %>
