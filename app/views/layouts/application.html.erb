@@ -44,12 +44,10 @@
       </div>
     </header>
         <h1>口コミチェックしたいURLを入力</h1>
-          <form class="form-inline my-2 my-lg-0">
             <%= form_with url: results_path, method: :post do |form| %>
               <%= form.text_field :url %>
               <%= form.submit %>
             <% end %>
-          </form>
       <%= yield %>
       <!-- Optional JavaScript -->
       <!-- jQuery first, then Popper.js, then Bootstrap JS -->
