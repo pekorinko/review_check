@@ -1,7 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
   <head>
-    <meta content="text/html, charset=UTF-8, http-equiv, Content-Type">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
     <title>ReviewCheck</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -14,18 +19,14 @@
     <header class="navbar navbar-expand-sm navbar-light bg-light">
       <div class="container">
         <%= link_to "review_check", root_path, class: "navbar-brand mr-auto" %>
-        <div class="navbar-nav">
+        <ul class="navbar-nav mr-auto">
           <% if logged_in? %>
-            <div class="nav-item">
-              <p>ようこそ <%= current_user.name %>さん</p>
-              <%= link_to "ログアウト", logout_path, class: "nav-link", method: :delete %>
-            </div>
+              <li class= "nav-item">ようこそ <%= current_user.name %>さん</li>
+              <li class= "nav-item"><%= link_to "ログアウト", logout_path, class: "nav-link", method: :delete %></li>
           <% else %>
-            <div class="nav-item">
-              <%= link_to "GitHubでログイン", "/auth/github", class: "nav-link", method: :post %>
-            </div>
+              <li class= "nav-item active"><%= link_to "GitHubでログイン", "/auth/github", class: "nav-link", method: :post %></li>
           <% end %>
-        </div>
+        </ul>
       </div>
       <div class="container">
         <% if flash.notice %>
@@ -35,11 +36,20 @@
         <% end %>
       </div>
     </header>
-      <h1>口コミチェックしたいURLを入力</h1>
-        <%= form_with url: results_path, method: :post do |form| %>
-          <%= form.text_field :url %>
-          <%= form.submit %>
-        <% end %>
-    <%= yield %>
+      <div class="mt-1 mx-5">
+        <h1>口コミチェックしたいURLを入力</h1>
+          <form class="form-inline my-2 my-lg-0">
+            <%= form_with url: results_path, method: :post do |form| %>
+              <%= form.text_field :url %>
+              <%= form.submit %>
+            <% end %>
+          </form>
+      <%= yield %>
+      <!-- Optional JavaScript -->
+      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+      <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+      </div>
   </body>
 </html>

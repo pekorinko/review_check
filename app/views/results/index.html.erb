@@ -1,4 +1,4 @@
-<h1><%= current_user.name %>さんの閲覧履歴</h1>
+<h1 class="mt-1"><%= current_user.name %>さんの閲覧履歴</h1>
 <% @search_histories.each do |search_history| %>
     <p>店舗名：<%= search_history.place_name %></p>
     <p>平均星評価：<%= search_history.star_ave %></p>
