@@ -28,6 +28,13 @@
           <% end %>
         </ul>
       </div>
+      <!--
+      <div class="container">
+        <% flash.each do |info, message| %>
+          <%= '不正なURLです' %>
+        <% end %>
+     </div>
+     <-->
       <div class="container">
         <% if flash.notice %>
           <div class="alert alert-success">
@@ -36,7 +43,6 @@
         <% end %>
       </div>
     </header>
-      <div class="mt-3 mb-3 mx-5">
         <h1>口コミチェックしたいURLを入力</h1>
           <form class="form-inline my-2 my-lg-0">
             <%= form_with url: results_path, method: :post do |form| %>
