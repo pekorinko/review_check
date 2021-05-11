@@ -15,36 +15,69 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <header class="navbar navbar-expand-sm navbar-light bg-light">
-      <div class="container">
-        <%= link_to "review_check", root_path, class: "navbar-brand mr-auto" %>
+
+  <body class= "mx-5">
+  <!--
+      <header class="navbar navbar-expand-sm navbar-light bg-light">
+        <div class="container">
+          <%= link_to "review_check", root_path, class: "navbar-brand mr-auto" %>
+          <ul class="navbar-nav mr-auto">
+            <% if logged_in? %>
+                <li class= "nav-item"><%= link_to "ログアウト", logout_path, class: "nav-link", method: :delete %></li>
+            <% else %>
+                <li class= "nav-item active"><%= link_to "GitHubでログイン", "/auth/github", class: "nav-link", method: :post %></li>
+            <% end %>
+          </ul>
+        </div>
+        <div class="container">
+          <% if flash.notice %>
+            <div class="alert alert-success">
+              <%= flash.notice %>
+            </div>
+          <% end %>
+        </div>
+      </header>
+<-->
+
+ <!--
+<nav class="navbar navbar-expand-md navbar-dark bg-info">
+-->
+<nav class="navbar navbar-expand-md navbar-dark bg-info p-1">
+    <a href="/" class="navbar-brand">review_check</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar4">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <!--
+    <div class="navbar-collapse collapse" id="navbar4">
+    -->
+    <div class="collapse navbar-collapse justify-content-around" id="navbarNav4">
         <ul class="navbar-nav mr-auto">
           <% if logged_in? %>
-               <!--
-              <li class= "nav-item">ようこそ <%= current_user.name %>さん</li>
-              <-->
-              <li class= "nav-item"><%= link_to "ログアウト", logout_path, class: "nav-link", method: :delete %></li>
+              <li class="nav-item active">
+                  <%= link_to "ログアウト", logout_path, class: "nav-link", method: :delete %>
+              </li>
           <% else %>
-              <li class= "nav-item active"><%= link_to "GitHubでログイン", "/auth/github", class: "nav-link", method: :post %></li>
+              <li class="nav-item pt-5 pb-5">
+                <%= link_to "GitHubでログイン", "/auth/github", class: "nav-link", method: :post %>
+              </li>
+          <% end %>
+          <% if flash.notice %>
+              <div class="alert alert-success">
+                <li class="nav-item mt-3 mb-3">
+                  <%= flash.notice %>
+                </li>
+              </div>
           <% end %>
         </ul>
-      </div>
-      <!--
-      <div class="container">
-        <% flash.each do |info, message| %>
-          <%= '不正なURLです' %>
-        <% end %>
-     </div>
-     <-->
-      <div class="container">
-        <% if flash.notice %>
-          <div class="alert alert-success">
-            <%= flash.notice %>
-          </div>
-        <% end %>
-      </div>
-    </header>
+    </div>
+</nav>
+
+
+
+
+
+
+
     <% if logged_in? %>
       <p class= "nav-item">ようこそ <%= current_user.name %>さん</p>
     <% end %>
