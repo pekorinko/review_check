@@ -1,13 +1,40 @@
 module MyTools
   class SeleniumTool
+    attr_reader :url
     def initialize(url)
       @url = url
+
       options = Selenium::WebDriver::Chrome::Options.new
-      options.add_argument('--headless')
+
+      # options.add_argument('--headless')
       @d = Selenium::WebDriver.for :chrome, options: options
-      wait = Selenium::WebDriver::Wait.new(timeout: 30)
+      @wait = Selenium::WebDriver::Wait.new(timeout: 30)
       @d.get(@url)
-      wait.until { @d.find_element(:class_name, 'lcorif').displayed? }
+
+      # モーダルが来ても検索結果が来てもページが表示されたか判別出来るなにかをする
+      # begin rescueを使ってタイムアウトしたということは検索画面URLだったと判断する
+      begin
+        wait.until { @d.find_element(:class_name, 'lcorif').displayed? }
+      rescue StandardError
+        replace_url_if_needed
+      end
+    end
+
+    def replace_url_if_needed
+      modal =
+        @d.execute_script(
+          'return document.getElementsByClassName("review-dialog-list").length',
+        )
+
+      if modal == 0
+        @d.execute_script(
+          'document.getElementsByClassName("hqzQac")[0].getElementsByTagName("a")[0].click()',
+        )
+        sleep 5
+        @url = @d.current_url
+        @d.get(@url)
+        @wait.until { @d.find_element(:class_name, 'lcorif').displayed? }
+      end
     end
 
     def get_review_count(local_guide)

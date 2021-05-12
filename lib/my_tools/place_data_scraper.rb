@@ -3,8 +3,8 @@ module MyTools
     attr_reader :url
 
     def initialize(url)
-      @url = url
-      @scrape_process = MyTools::SeleniumTool.new(@url)
+      @scrape_process = MyTools::SeleniumTool.new(url)
+      @url = @scrape_process.url
     end
 
     def save_review(place_id)
