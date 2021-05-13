@@ -50,19 +50,19 @@
     <!--
     <div class="navbar-collapse collapse" id="navbar4">
     -->
-    <div class="collapse navbar-collapse justify-content-around" id="navbarNav4">
+    <div class="collapse navbar-collapse justify-content-start" id="navbarNav4">
         <ul class="navbar-nav mr-auto">
           <% if logged_in? %>
-              <li class="nav-item active justify-content-end">
+              <li class="nav-item active">
                   <%= link_to "ログアウト", logout_path, class: "nav-link", method: :delete %>
               </li>
           <% else %>
-              <li class="nav-item justify-content-end">
+              <li class="nav-item">
                 <%= link_to "GitHubでログイン", "/auth/github", class: "nav-link", method: :post %>
               </li>
           <% end %>
           <% if flash.notice %>
-              <div class="alert alert-success">
+              <div class="alert alert-danger">
                 <li class="nav-item justify-content-end">
                   <%= flash.notice %>
                 </li>
@@ -71,13 +71,6 @@
         </ul>
     </div>
 </nav>
-
-
-
-
-
-
-
     <% if logged_in? %>
       <h4 class= "nav-item mt-3 mb-3 mx-5 text-info">ようこそ <%= current_user.name %>さん</h4>
     <% end %>
