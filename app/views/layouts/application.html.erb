@@ -72,9 +72,9 @@
     </div>
 </nav>
     <% if logged_in? %>
-      <h4 class= "nav-item mt-3 mb-3 mx-5 text-info">ようこそ <%= current_user.name %>さん</h4>
+      <h5 class= "nav-item my-3 mx-3 font-weight-bold text-info">ようこそ <%= current_user.name %>さん</h5>
     <% end %>
-        <h1 class= "mx-5">口コミチェックしたいURLを入力</h1>
+        <h3 class= "my-3 mx-3 font-weight-bold">口コミチェックしたいURLを入力</h3>
             <div class="mx-5">
             <%= form_with url: results_path, method: :post do |form| %>
               <%= form.text_field :url %>
