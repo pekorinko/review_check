@@ -1,0 +1,7 @@
+<h3 class= "my-3 mx-3 font-weight-bold">口コミチェックしたいURLを入力</h3>
+        <div class="mx-5">
+          <%= form_with url: results_path, method: :post do |form| %>
+            <%= form.text_field :url %>
+            <%= form.submit %>
+          <% end %>
+        </div>
