@@ -23,9 +23,6 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <!--
-        <div class="navbar-collapse collapse" id="navbar4">
-        -->
         <div class="collapse navbar-collapse justify-content-start" id="menu">
             <ul class="navbar-nav">
               <% if logged_in? %>
@@ -37,15 +34,6 @@
                     <%= link_to "GitHubでログイン", "/auth/github", class: "nav-link", method: :post %>
                   </li>
               <% end %>
-              <!--
-              <% if flash.notice %>
-                  <div class="alert alert-danger" role="alert">
-                    <li class="nav-item justify-content-end">
-                      <%= flash.notice %>
-                    </li>
-                  </div>
-              <% end %>
-              -->
             </ul>
         </div>
     </nav>
