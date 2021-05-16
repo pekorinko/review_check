@@ -1,10 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>ReviewCheck</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
 <body>
     <header>
+      <div class="alert alert-info text-center mb-0 rounded-0 alert-dismissible fade show">
+            <% if flash.notice %>
+              <%= flash.notice %>
+            <% end %>
+        </ul>
+        <button class="close" data-dismiss="alert">
+          &times;
+        </button>
+      </div>
       <%= render partial: 'results/form' %>
     </header>
     <main>
       <section>
-        <h2 class="text-center my-3">review_checkとは？</h2>
+        <h2 class="text-center my-3 font-weight-bold">review_checkとは？</h2>
            <div class="container mb-3">
                <h5 class="font-weight-bold text-center">使い方・特徴</h5>
                   <ul>
@@ -18,7 +43,7 @@
             </div>
       </section>
     <section class="bg-light text-center py-3">
-      <h2 class="mb-3 mx-5">直近の検索結果</h2>
+      <h2 class="mb-3 mx-5 font-weight-bold">直近の検索結果</h2>
           <div class="container mb-3 mx-5">
             <table class="table table-hover">
               <% @result_histories.each do |result_history| %>

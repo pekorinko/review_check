@@ -17,82 +17,40 @@
 
 
   <body class= "mx-5">
-  <!--
-      <header class="navbar navbar-expand-sm navbar-light bg-light">
-        <div class="container">
-          <%= link_to "review_check", root_path, class: "navbar-brand mr-auto" %>
-          <ul class="navbar-nav mr-auto">
-            <% if logged_in? %>
-                <li class= "nav-item"><%= link_to "ログアウト", logout_path, class: "nav-link", method: :delete %></li>
-            <% else %>
-                <li class= "nav-item active"><%= link_to "GitHubでログイン", "/auth/github", class: "nav-link", method: :post %></li>
-            <% end %>
-          </ul>
-        </div>
-        <div class="container">
-          <% if flash.notice %>
-            <div class="alert alert-success">
-              <%= flash.notice %>
-            </div>
-          <% end %>
-        </div>
-      </header>
-<-->
-
- <!--
-<nav class="navbar navbar-expand-md navbar-dark bg-info">
--->
-  <nav class="navbar navbar-expand-md navbar-dark bg-info p-1">
-      <a href="/" class="navbar-brand ml-3 font-weight-bold">review_check</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar4">
-          <span class="navbar-toggler-icon"></span>
-      </button>
-      <!--
-      <div class="navbar-collapse collapse" id="navbar4">
-      -->
-      <div class="collapse navbar-collapse justify-content-start" id="navbarNav4">
-          <ul class="navbar-nav mr-auto">
-            <% if logged_in? %>
-                <li class="nav-item active">
-                    <%= link_to "ログアウト", logout_path, class: "nav-link", method: :delete %>
-                </li>
-            <% else %>
-                <li class="nav-item active">
-                  <%= link_to "GitHubでログイン", "/auth/github", class: "nav-link", method: :post %>
-                </li>
-            <% end %>
-            <!--
-            <% if flash.notice %>
-                <div class="alert alert-danger" role="alert">
-                  <li class="nav-item justify-content-end">
-                    <%= flash.notice %>
+  <div class="container">
+    <nav class="navbar navbar-expand-sm navbar-light bg-white">
+        <a href="/" class="navbar-brand ml-3 font-weight-bold">review_check</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!--
+        <div class="navbar-collapse collapse" id="navbar4">
+        -->
+        <div class="collapse navbar-collapse justify-content-start" id="menu">
+            <ul class="navbar-nav">
+              <% if logged_in? %>
+                  <li class="nav-item">
+                      <%= link_to "ログアウト", logout_path, class: "nav-link", method: :delete %>
                   </li>
-                </div>
-            <% end %>
-            -->
-          </ul>
-      </div>
-  </nav>
-    <main>
-      <ul class="navbar-nav mr-auto">
-          <% if flash.notice %>
-            <div class="alert alert-danger h-25 mt-3" role="alert">
-              <li class="nav-item justify-content-end">
-                <%= flash.notice %>
-              </li>
-            </div>
-          <% end %>
-      </ul>
-      <% if logged_in? %>
-        <h5 class= "nav-item my-3 mx-3 font-weight-bold text-info">ようこそ <%= current_user.name %>さん</h5>
-      <% end %>
-        <%= yield %>
-          <!-- Optional JavaScript -->
-          <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-          <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-          <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-          <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    </main>
+              <% else %>
+                  <li class="nav-item">
+                    <%= link_to "GitHubでログイン", "/auth/github", class: "nav-link", method: :post %>
+                  </li>
+              <% end %>
+              <!--
+              <% if flash.notice %>
+                  <div class="alert alert-danger" role="alert">
+                    <li class="nav-item justify-content-end">
+                      <%= flash.notice %>
+                    </li>
+                  </div>
+              <% end %>
+              -->
+            </ul>
+        </div>
+    </nav>
+  </div>
+  <%= yield %>
     <footer class="text-center text-muted py-4">
       Copyright 2021 pekorinko
     </footer>
