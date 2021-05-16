@@ -1,24 +1,46 @@
-
-<section>
+<body>
+    <header>
+      <%= render partial: 'results/form' %>
+    </header>
+    <main>
+      <section>
         <h2 class="text-center my-3">review_checkとは？</h2>
-        <div class="container mb-3">
-            <h5 class="font-weight-bold">使い方・特徴</h5>
-            <ul>
-              <li>「Googleの口コミ」ボタンを押した後に表示されるURL、<br>もしくGooglの口コミを知りたい施設を検索した際のURLを検索窓に入力して「save」ボタンを押してください</li>
-              <li>文字数50文字以上、投稿件数20件以上の投稿者に絞った場合の厳選された星評価を表示します</li>
-            </ul>
-            <h5 class="font-weight-bold">ログイン機能</h5>
-              <p>GitHubアカウントでログインして頂いた場合、ご自身が過去に検索した直近５件の検索結果を閲覧することが出来ます</p>
-        </div>
-</section>
-<%= render partial: 'results/form' %>
-<h2 class="my-3 mx-5">直近の検索結果</h2>
-    <div class="mx-5">
-        <% @result_histories.each do |result_history| %>
-            <p>店舗名：<%= result_history.place.place_name %></p>
-            <p>住所：<%= result_history.place.address %></p>
-            <p>厳選された星評価：<%= result_history.credible_star_ave %></p>
-            <%= link_to "詳細へ", result_path(result_history.id) %>
-        <% end %>
-        <p class="mt-3 mb-3">＊厳選された星評価＝文字数50文字以上かつ投稿件数20件以上の投稿者に絞った場合の星評価</p>
-    </div>
+           <div class="container mb-3">
+               <h5 class="font-weight-bold text-center">使い方・特徴</h5>
+                  <ul>
+                  <li>「Googleの口コミ」ボタンを押した後に表示されるURL、<br>もしくGooglの口コミを知りたい施設を検索した際のURLを検索窓に入力して「save」ボタンを押してください</li>
+                  <li>文字数50文字以上、投稿件数20件以上の投稿者に絞った場合の厳選された星評価を表示します</li>
+                  </ul>
+            </div>
+            <div class="container mb-3">
+                <h5 class="font-weight-bold text-center">ログイン機能</h5>
+                <p>GitHubアカウントでログインして頂いた場合、ご自身が過去に検索した直近５件の検索結果を閲覧することが出来ます</p>
+            </div>
+      </section>
+    <section class="bg-light text-center py-3">
+      <h2 class="mb-3 mx-5">直近の検索結果</h2>
+          <div class="container mb-3 mx-5">
+            <table class="table table-hover">
+              <% @result_histories.each do |result_history| %>
+                  <thead>
+                    <tr><th>店舗名：<%= result_history.place.place_name %></th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>住所：<%= result_history.place.address %></td></tr>
+                    <tr><td>厳選された星評価：<%= result_history.credible_star_ave %></td></tr>
+                    <tr><td><%= link_to "詳細へ", result_path(result_history.id) %></td></tr>
+                  </tbody>
+                  <!--
+                  <p>店舗名：<%= result_history.place.place_name %></p>
+                  <p>住所：<%= result_history.place.address %></p>
+                  <p>厳選された星評価：<%= result_history.credible_star_ave %></p>
+                  <%= link_to "詳細へ", result_path(result_history.id) %>
+                  <%= link_to "店舗名：", result_path(result_history.id) %>
+                  -->
+              <% end %>
+              <p class="mt-3 mb-3">＊厳選された星評価＝文字数50文字以上かつ投稿件数20件以上の投稿者に絞った場合の星評価</p>
+            </table>
+          </div>
+    </section>
+    </main>
+</body>
