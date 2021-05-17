@@ -32,6 +32,7 @@ module MyTools
         lrd: lrd,
         place_name: result[:place_name],
         address: result[:address],
+        star_ave: result[:star_ave],
       )
     end
   end
