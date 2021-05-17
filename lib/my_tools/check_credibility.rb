@@ -35,6 +35,9 @@ module MyTools
       place = Place.find_by(id: @place_id)
 
       star_ave = total / stars.length
+
+      # 実際は以下コードのようにGoogleの星評価をstar_aveとするようにしたい
+      # star_ave = MyTools::SeleniumTool.star_ave
       count_ave = count_total / counts.length
       text_ave = text_total / texts.length
       begin

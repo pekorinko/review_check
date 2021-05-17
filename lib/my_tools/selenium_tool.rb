@@ -1,5 +1,6 @@
 module MyTools
   class SeleniumTool
+    attr_reader :star_ave
     def initialize(url)
       @url = url
       options = Selenium::WebDriver::Chrome::Options.new
@@ -84,6 +85,11 @@ module MyTools
     end
 
     def fetch_place
+      @star_ave =
+        @d.execute_script(
+          'return document.getElementsByClassName("review-score-container")[0].getElementsByClassName("Aq14fc")[0].innerText
+        ',
+        )
       facility = @d.find_element(:class_name, 'VUGnzb')
       facility_name = facility.find_element(:class_name, 'P5Bobd').text
       address = facility.find_element(:class_name, 'T6pBCe').text
