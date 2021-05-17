@@ -1,46 +1,49 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>ReviewCheck</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <title>ReviewCheck</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
 
-  <body class= "mx-5">
+<body class="mx-5">
   <div class="container">
     <nav class="navbar navbar-expand-sm navbar-light bg-white">
-        <a href="/" class="navbar-brand ml-3 font-weight-bold">review_check</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-start" id="menu">
-            <ul class="navbar-nav">
-              <% if logged_in? %>
-                  <li class="nav-item">
-                      <%= link_to "ログアウト", logout_path, class: "nav-link", method: :delete %>
-                  </li>
-              <% else %>
-                  <li class="nav-item">
-                    <%= link_to "GitHubでログイン", "/auth/github", class: "nav-link", method: :post %>
-                  </li>
-              <% end %>
-            </ul>
-        </div>
+      <a href="/" class="navbar-brand ml-3 font-weight-bold">review_check</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-start" id="menu">
+        <ul class="navbar-nav">
+          <% if logged_in? %>
+          <li class="nav-item">
+            <%= link_to "ログアウト", logout_path, class: "nav-link", method: :delete %>
+          </li>
+          <% else %>
+          <li class="nav-item">
+            <%= link_to "GitHubでログイン", "/auth/github", class: "nav-link", method: :post %>
+          </li>
+          <% end %>
+        </ul>
+      </div>
     </nav>
   </div>
   <%= yield %>
-    <footer class="text-center text-muted py-4">
-      Copyright 2021 pekorinko
-    </footer>
-  </body>
+  <footer class="text-center text-muted py-4">
+    Copyright 2021 pekorinko
+  </footer>
+</body>
+
 </html>

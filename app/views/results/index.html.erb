@@ -1,12 +1,12 @@
     <header>
-      <div class="alert alert-info text-center mb-0 rounded-0 alert-dismissible fade show">
-          <% if flash.notice %>
+      <% if flash.notice %>
+          <div class="alert alert-info text-center mb-0 rounded-0 alert-dismissible fade show">
             <%= flash.notice %>
-          <% end %>
-          <button class="close" data-dismiss="alert">
-            &times;
-          </button>
-      </div>
+            <button class="close" data-dismiss="alert">
+              &times;
+            </button>
+          </div>
+      <% end %>
         <%= render partial: 'results/form' %>
     </header>
     <main>
