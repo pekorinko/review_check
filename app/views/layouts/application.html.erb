@@ -35,11 +35,6 @@
         <% end %>
       </div>
     </header>
-      <h1>口コミチェックしたいURLを入力</h1>
-        <%= form_with url: results_path, method: :post do |form| %>
-          <%= form.text_field :url %>
-          <%= form.submit %>
-        <% end %>
     <%= yield %>
   </body>
 </html>
