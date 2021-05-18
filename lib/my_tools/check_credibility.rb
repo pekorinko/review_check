@@ -34,14 +34,11 @@ module MyTools
 
       place = Place.find_by(id: @place_id)
 
-      # star_ave = total / stars.length
-
-      # 実際は以下コードのようにGoogleの星評価をstar_aveとするようにしたい
-      # star_ave = MyTools::SeleniumTool.star_ave
       count_ave = count_total / counts.length
       text_ave = text_total / texts.length
       begin
-        credible_star_ave = selected_star_total / selected_stars.length
+        star_ave = selected_star_total / selected_stars.length
+        credible_star_ave = BigDecimal(star_ave.to_s).floor(1).to_f
       rescue StandardError
         credible_star_ave = '厳選された星評価基準を満たす投稿がありません'
       end
