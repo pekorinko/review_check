@@ -85,11 +85,11 @@ module MyTools
 
     def fetch_place
       star_ave =
-        @d.execute_script(
-          'return document.getElementsByClassName("review-score-container")[0].getElementsByClassName("Aq14fc")[0].innerText
-        ',
-        )
-      puts "#{star_ave}*******************"
+        @d
+          .find_element(:class_name, 'review-score-container')
+          .find_element(:class_name, 'Aq14fc')
+          .text
+
       facility = @d.find_element(:class_name, 'VUGnzb')
       facility_name = facility.find_element(:class_name, 'P5Bobd').text
       address = facility.find_element(:class_name, 'T6pBCe').text
