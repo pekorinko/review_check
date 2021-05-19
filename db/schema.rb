@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2021_05_17_225647) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "lrd"
-    t.integer "star_ave"
+    t.float "star_ave"
     t.index ["lrd"], name: "index_places_on_lrd", unique: true
   end
 
