@@ -24,15 +24,24 @@ module MyTools
 
     def save_place
       uri = URI.parse(@url)
-      lrd = uri.fragment.split('=')[1].split(',')[0]
-      place = Place.find_by(lrd: lrd)
-      return place if place.present?
-      result = @scrape_process.fetch_place
+      @lrd = uri.fragment.split('=')[1].split(',')[0]
+      place = Place.find_by(lrd: @lrd)
+      @result = @scrape_process.fetch_place
+
+      if place.present?
+        place.update(
+          place_name: @result[:place_name],
+          address: @result[:address],
+          star_ave: @result[:star_ave],
+        )
+        return place
+      end
+
       Place.create(
-        lrd: lrd,
-        place_name: result[:place_name],
-        address: result[:address],
-        star_ave: result[:star_ave],
+        lrd: @lrd,
+        place_name: @result[:place_name],
+        address: @result[:address],
+        star_ave: @result[:star_ave],
       )
     end
   end
