@@ -48,12 +48,12 @@
           <% @result_histories.each do |result_history| %>
           <thead>
             <tr>
-              <th>店舗名：<%= result_history.place.place_name %></th>
+              <th>施設名：<%= result_history.place.place_name %></th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>住所：<%= result_history.place.address %></td>
+              <td>Googleの星評価：<%= result_history.star_ave %></td>
             </tr>
             <tr>
               <td>厳選された星評価：<%= result_history.credible_star_ave %></td>

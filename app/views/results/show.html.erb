@@ -6,7 +6,7 @@
   <table class="table table-hover">
     <thead>
       <tr>
-        <th>店舗名：<%= @place.place_name %></th>
+        <th>施設名：<%= @place.place_name %></th>
       </tr>
     </thead>
     <tbody>
@@ -14,13 +14,13 @@
         <td>住所：<%= @place.address %></td>
       </tr>
       <tr>
-        <td>平均投稿数：<%= @result.count_ave %></td>
+        <td>口コミ投稿者の平均投稿数：<%= @result.count_ave %></td>
       </tr>
       <tr>
-        <td>平均星評価：<%= @result.star_ave %></td>
+        <td>Googleの星評価：<%= @result.star_ave %></td>
       </tr>
       <tr>
-        <td>平均文字数：<%= @result.text_ave %></td>
+        <td>口コミ本文の平均文字数：<%= @result.text_ave %></td>
       </tr>
       <tr>
         <td>厳選された星評価：<%= @result.credible_star_ave %></td>
