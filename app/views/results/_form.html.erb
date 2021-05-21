@@ -1,16 +1,17 @@
-<style>
-  .cover {
-    background: linear-gradient(#1E00FF, #05FBFF);
-    background-size: cover;
-  }
-</style>
+<head>
+  <style>
+    .cover {
+      background: linear-gradient(#1E00FF, #05FBFF);
+      background-size: cover;
+    }
+  </style>
 </head>
 
 
 <body class="mx-5">
   <header>
     <div class="cover py-3 px-3 text-white text-center">
-      <h3 class="font-weight-bold">口コミチェックしたいURLを入力</h3>
+      <h3 class="font-weight-bold">チェックしたいGoogleの口コミURLを入力</h3>
       <% if logged_in? %>
       <h5 class="nav-item my-3 mx-3 font-weight-bold text-white">ようこそ <%= current_user.name %>さん</h5>
       <% end %>

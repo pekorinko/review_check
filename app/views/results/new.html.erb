@@ -4,6 +4,34 @@
       padding-top: 10px;
       padding-bottom: 10px;
     }
+
+    .box30 {
+      margin: 2em 0;
+      background: #f1f1f1;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.22);
+    }
+
+    .box30 .box-title {
+      font-size: 1.2em;
+      background: #5fc2f5;
+      padding: 4px;
+      text-align: center;
+      color: #FFF;
+      font-weight: bold;
+      letter-spacing: 0.05em;
+    }
+
+    .box30 p {
+      padding: 15px 20px;
+      margin: 0;
+    }
+
+    .recent-result {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
   </style>
 </head>
 
@@ -41,6 +69,7 @@
       </div>
     </section>
 
+    <!--
     <section class="text-left">
       <h2 class="my-3 mx-5 font-weight-bold">直近の検索結果</h2>
       <div class="container mb-3 mx-5">
@@ -53,7 +82,7 @@
           </thead>
           <tbody>
             <tr>
-              <td>住所：<%= result_history.place.address %></td>
+              <td>Google星評価：<%= result_history.star_ave %></td>
             </tr>
             <tr>
               <td>厳選された星評価：<%= result_history.credible_star_ave %></td>
@@ -68,5 +97,20 @@
         </table>
       </div>
     </section>
+    -->
+    <section class="text-left">
+      <h2 class="my-3 mx-5 font-weight-bold">直近の検索結果</h2>
+
+      <div class="mt-3 mb-3 mx-5 recent-result">
+        <% @result_histories.each do |result_history| %>
+        <div class="box30">
+          <div class="box-title"><%= result_history.place.place_name %></div>
+          <p>Google星評価：<%= result_history.star_ave %>→厳選された星評価：<%= result_history.credible_star_ave %></p>
+        </div>
+        <% end %>
+      </div>
+
+    </section>
+
   </main>
 </body>
