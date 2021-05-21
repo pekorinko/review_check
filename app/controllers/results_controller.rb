@@ -7,7 +7,7 @@ class ResultsController < ApplicationController
         .results
         .select('DISTINCT ON (place_id) *')
         .order(place_id: :desc)
-        .limit(5)
+        .limit(6)
     @search_histories =
       search_histories.map do |search_history|
         place = Place.find(search_history.place_id)
