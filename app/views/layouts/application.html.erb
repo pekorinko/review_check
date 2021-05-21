@@ -15,6 +15,41 @@
 
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <style>
+    .info2 {
+      display: block;
+      display: block;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #4287f5;
+      color: #FFF;
+      position: relative;
+    }
+
+    .info2::before {
+      content: "";
+      display: block;
+      width: 3px;
+      height: 3px;
+      background: #FFF;
+      border-radius: 50%;
+      position: absolute;
+      top: 3px;
+      left: calc(50% - 1.5px);
+    }
+
+    .info2::after {
+      content: "";
+      display: block;
+      width: 3px;
+      height: 8px;
+      background: #FFF;
+      position: absolute;
+      bottom: 4px;
+      left: calc(50% - 1.5px);
+    }
+  </style>
 </head>
 
 
@@ -34,6 +69,7 @@
           <% else %>
           <li class="nav-item">
             <%= link_to "GitHubでログイン", "/auth/github", class: "nav-link", method: :post %>
+            <a href="#" class="info2"></a>
           </li>
           <% end %>
         </ul>
