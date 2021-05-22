@@ -1,34 +1,73 @@
-<header>
-  <%= render partial: 'results/form' %>
-</header>
-<h2 class="mt-3 mb-3 mx-5">チェック結果</h2>
-<div class="mt-3 mb-3 mx-5">
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th>店舗名：<%= @place.place_name %></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>住所：<%= @place.address %></td>
-      </tr>
-      <tr>
-        <td>平均投稿数：<%= @result.count_ave %></td>
-      </tr>
-      <tr>
-        <td>平均星評価：<%= @result.star_ave %></td>
-      </tr>
-      <tr>
-        <td>平均文字数：<%= @result.text_ave %></td>
-      </tr>
-      <tr>
-        <td>厳選された星評価：<%= @result.credible_star_ave %></td>
-      </tr>
-      <tr>
-        <td>＊厳選された星評価＝文字数50文字以上かつ投稿件数20件以上の投稿者に絞った場合の星評価</td>
-      </tr>
-    </tbody>
-  </table>
-  <%= link_to "戻る",new_result_path %>
-</div>
+<head>
+  <style>
+    ul li {
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+
+    .box30 {
+      margin: 2em 0;
+      background: #f1f1f1;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.22);
+    }
+
+    .box30 .box-title {
+      font-size: 1.2em;
+      background: #5fc2f5;
+      padding: 4px;
+      text-align: center;
+      color: #FFF;
+      font-weight: bold;
+      letter-spacing: 0.05em;
+    }
+
+    .box30 p {
+      padding: 15px 20px;
+      margin: 0;
+    }
+
+    .recent-result {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <%= render partial: 'results/form' %>
+  </header>
+  <main>
+    <section class="text-left">
+      <h3 class="my-3 mx-5 font-weight-bold text-center">チェック結果</h3>
+      <div class="mt-3 mb-3 mx-5 recent-result">
+        <div class="box30">
+          <div class="box-title">
+            <%= link_to @place.place_name, "https://github.com/pekorinko/review_check/pull/63/files" %></div>
+          <p>Google星評価：<%= @result.star_ave %>→<span data-toggle="tooltip" title="文字数50文字以上、投稿件数20件以上の投稿者に絞った評価"
+              data-placement="bottom">厳選された星評価：<%= @result.credible_star_ave %></span></p>
+        </div>
+      </div>
+      <%= link_to "戻る",new_result_path %>
+    </section>
+  </main>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+    integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous">
+  </script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+    integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous">
+  </script>
+  <script>
+    $(function () {
+      'use strict';
+      $('[data-toggle="tooltip"]').tooltip();
+    });
+  </script>
+</body>
