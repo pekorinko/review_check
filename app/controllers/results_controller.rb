@@ -15,7 +15,7 @@ class ResultsController < ApplicationController
           search_history.id,
           place.id,
           place.place_name,
-          search_history.star_ave,
+          place.star_ave,
           search_history.credible_star_ave,
         )
       end
