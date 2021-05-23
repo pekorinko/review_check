@@ -65,7 +65,8 @@
           <thead class="table-title">
             <tr>
               <th>
-                <%= link_to @place.place_name, @place.url, {class: "place_name"} %>
+                <span data-toggle="tooltip" title="クリックするとGoogleの口コミ画面を閲覧できます"
+                  data-placement="right"><%= link_to @place.place_name, @place.url, {class: "place_name"} %>
               </th>
             </tr>
           </thead>
