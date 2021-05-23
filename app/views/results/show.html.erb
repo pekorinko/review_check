@@ -13,7 +13,7 @@
 
     .table-title {
       font-size: 1.2em;
-      background: #5fc2f5;
+      background: #00A082CC;
       padding: 4px;
       text-align: center;
       color: #FFF;
@@ -32,6 +32,10 @@
       flex-direction: row;
       flex-wrap: wrap;
       justify-content: center;
+    }
+
+    .return {
+      color: white;
     }
   </style>
 </head>
@@ -66,7 +70,7 @@
             </tr>
           </tbody>
         </table>
-        <button class="btn btn-info"><%= link_to "戻る",new_result_path %></button>
+        <button class="btn btn-info"><%= link_to "戻る",new_result_path, {class: "return"}%></button>
       </div>
     </section>
   </main>
