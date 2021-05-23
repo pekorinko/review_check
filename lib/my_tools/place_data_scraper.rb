@@ -38,6 +38,7 @@ module MyTools
       end
 
       Place.create(
+        url: @url,
         lrd: @lrd,
         place_name: @result[:place_name],
         address: @result[:address],

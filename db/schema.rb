@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_17_225647) do
+ActiveRecord::Schema.define(version: 2021_05_23_111332) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2021_05_17_225647) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "lrd"
     t.float "star_ave"
+    t.string "url"
     t.index ["lrd"], name: "index_places_on_lrd", unique: true
   end
 

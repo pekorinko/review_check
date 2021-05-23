@@ -1,4 +1,5 @@
 class ResultsController < ApplicationController
+  attr_reader :url
   skip_before_action :authenticate, except: :index
 
   def index
