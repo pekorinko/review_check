@@ -4,13 +4,24 @@
       background: #00A082CC;
       background-size: cover;
     }
+
+    .bg_dot {
+      margin: auto;
+      box-sizing: border-box;
+      width: 100%;
+      text-align: center;
+      color: #7f4600;
+      background: #00A082CC;
+      border: 5px double #7bded9;
+      border-radius: 1px;
+    }
   </style>
 </head>
 
 
 <body class="mx-5">
   <header>
-    <div class="cover py-3 px-3 text-white text-center">
+    <div class="cover bg_dot py-3 px-3 text-white text-center">
       <h3 class="font-weight-bold text-center">チェックしたいGoogleの口コミURLを入力</h3>
 
       <% if logged_in? %>

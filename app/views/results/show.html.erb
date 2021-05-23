@@ -29,21 +29,22 @@
     }
 
     .return {
-      color: #00A082CC;
+      color: #fff;
     }
 
-    .return-button {
+    button {
       width: 90px;
       font-size: 20px;
       font-weight: bold;
       text-decoration: none;
       display: block;
       text-align: center;
-      padding: 8px 0 10px;
-      color: #00A082CC;
-      background-color: #fff;
+      padding: 6px 0 8px;
+      color: #fff;
+      background-color: #00A082CC;
       border-radius: 3px;
       border-color: #00A082CC;
+      display: block;
     }
 
     .place_name {
@@ -84,7 +85,7 @@
             </tr>
           </tbody>
         </table>
-        <button class="return-button"><%= link_to "戻る",new_result_path, {class: "return"}%></button>
+        <button><%= link_to "戻る",new_result_path, {class: "return"}%></button>
       </div>
     </section>
   </main>
