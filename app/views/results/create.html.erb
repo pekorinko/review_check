@@ -5,15 +5,9 @@
       padding-bottom: 10px;
     }
 
-    .box30 {
-      margin: 2em 0;
-      background: #f1f1f1;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.22);
-    }
-
     .table-title {
       font-size: 1.2em;
-      background: #5fc2f5;
+      background: #00A082CC;
       padding: 4px;
       text-align: center;
       color: #FFF;
@@ -33,6 +27,29 @@
       flex-wrap: wrap;
       justify-content: center;
     }
+
+    .return {
+      color: #fff;
+    }
+
+    button {
+      width: 90px;
+      font-size: 20px;
+      font-weight: bold;
+      text-decoration: none;
+      display: block;
+      text-align: center;
+      padding: 6px 0 8px;
+      color: #fff;
+      background-color: #00A082CC;
+      border-radius: 3px;
+      border-color: #00A082CC;
+      display: block;
+    }
+
+    .place_name {
+      color: #FFF
+    }
   </style>
 </head>
 
@@ -47,7 +64,9 @@
         <table class="table table-hover">
           <thead class="table-title">
             <tr>
-              <th><%= link_to @place.place_name, "https://github.com/pekorinko/review_check/pull/63/files" %></th>
+              <th>
+                <%= link_to @place.place_name, @place.url, {class: "place_name"} %>
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -66,7 +85,7 @@
             </tr>
           </tbody>
         </table>
-        <button class="btn btn-info"><%= link_to "戻る",new_result_path %></button>
+        <button><%= link_to "戻る",new_result_path, {class: "return"}%></button>
       </div>
     </section>
   </main>
