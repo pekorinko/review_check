@@ -7,7 +7,11 @@ module MyTools
       @d = Selenium::WebDriver.for :chrome, options: options
       wait = Selenium::WebDriver::Wait.new(timeout: 30)
       @d.get(@url)
-      wait.until { @d.find_element(:class_name, 'lcorif').displayed? }
+      begin
+        wait.until { @d.find_element(:class_name, 'lcorif').displayed? }
+      rescue StandardError
+        puts '例外が発生しました'
+      end
     end
 
     def get_review_count(local_guide)
