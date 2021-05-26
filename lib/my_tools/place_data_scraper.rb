@@ -24,7 +24,11 @@ module MyTools
 
     def save_place
       uri = URI.parse(@url)
-      @lrd = uri.fragment.split('=')[1].split(',')[0]
+      begin
+        @lrd = uri.fragment.split('=')[1].split(',')[0]
+      rescue StandardError
+        puts '口コミ関連のURLではありません'
+      end
       place = Place.find_by(lrd: @lrd)
       @result = @scrape_process.fetch_place
 
