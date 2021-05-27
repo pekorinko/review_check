@@ -49,7 +49,9 @@ class ResultsController < ApplicationController
         user_id = session[:user_id]
         check_credibility = MyTools::CheckCredibility.new(place_id)
         @result = check_credibility.credibility(user_id)
-        redirect_to action: 'create'
+
+        redirect_to result_path(@result)
+        # redirect_to action: 'create'
       rescue StandardError
         redirect_to root_path, notice: '口コミの取得に失敗しました'
       end
