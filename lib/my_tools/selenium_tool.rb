@@ -88,17 +88,25 @@ module MyTools
     end
 
     def fetch_place
-      star_ave =
-        @d
-          .find_element(:class_name, 'review-score-container')
-          .find_element(:class_name, 'Aq14fc')
-          .text
+      begin
+        star_ave =
+          @d
+            .find_element(:class_name, 'review-score-container')
+            .find_element(:class_name, 'Aq14fc')
+            .text
 
-      facility = @d.find_element(:class_name, 'VUGnzb')
-      facility_name = facility.find_element(:class_name, 'P5Bobd').text
-      address = facility.find_element(:class_name, 'T6pBCe').text
-      hash = { place_name: facility_name, address: address, star_ave: star_ave }
-      return hash
+        facility = @d.find_element(:class_name, 'VUGnzb')
+        facility_name = facility.find_element(:class_name, 'P5Bobd').text
+        address = facility.find_element(:class_name, 'T6pBCe').text
+        hash = {
+          place_name: facility_name,
+          address: address,
+          star_ave: star_ave,
+        }
+        return hash
+      rescue StandardError
+        puts '口コミがありません'
+      end
     end
   end
 end
