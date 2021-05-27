@@ -38,8 +38,9 @@ class ResultsController < ApplicationController
     @url = url_filter.filter
 
     url_validator = MyTools::UrlValidator.new(@url)
-    if url_validator.validate
-      @url = url_validator.validate
+    validated_result = url_validator.validate
+    if validated_result
+      @url = validated_result
       begin
         place_data_scraper = MyTools::PlaceDataScraper.new(@url)
         place = place_data_scraper.save_place
@@ -53,7 +54,7 @@ class ResultsController < ApplicationController
       rescue StandardError
         redirect_to root_path, notice: '口コミの取得に失敗しました'
       end
-    elsif @url.exclude?('www.google.com') && !url_validator.validate
+    else
       redirect_to root_path, notice: '不正なURLです'
     end
   end
