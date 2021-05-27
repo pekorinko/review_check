@@ -40,15 +40,19 @@ class ResultsController < ApplicationController
     url_validator = MyTools::UrlValidator.new(@url)
     if url_validator.validate
       @url = url_validator.validate
-      place_data_scraper = MyTools::PlaceDataScraper.new(@url)
-      place = place_data_scraper.save_place
-      place_id = place.id
-      place_data_scraper.save_review(place_id)
-      @place = place_data_scraper.save_place
-      user_id = session[:user_id]
-      check_credibility = MyTools::CheckCredibility.new(place_id)
-      @result = check_credibility.credibility(user_id)
-      redirect_to result_path(@result)
+      begin
+        place_data_scraper = MyTools::PlaceDataScraper.new(@url)
+        place = place_data_scraper.save_place
+        place_id = place.id
+        place_data_scraper.save_review(place_id)
+        @place = place_data_scraper.save_place
+        user_id = session[:user_id]
+        check_credibility = MyTools::CheckCredibility.new(place_id)
+        @result = check_credibility.credibility(user_id)
+        redirect_to result_path(@result)
+      rescue StandardError
+        redirect_to root_path, notice: '口コミの取得に失敗しました'
+      end
     elsif @url.exclude?('www.google.com') && !url_validator.validate
       redirect_to root_path, notice: '不正なURLです'
     end

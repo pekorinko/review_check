@@ -7,11 +7,6 @@ module MyTools
       @d = Selenium::WebDriver.for :chrome, options: options
       wait = Selenium::WebDriver::Wait.new(timeout: 30)
       @d.get(@url)
-      begin
-        wait.until { @d.find_element(:class_name, 'lcorif').displayed? }
-      rescue StandardError
-        puts '例外が発生しました'
-      end
     end
 
     def get_review_count(local_guide)
@@ -88,25 +83,17 @@ module MyTools
     end
 
     def fetch_place
-      begin
-        star_ave =
-          @d
-            .find_element(:class_name, 'review-score-container')
-            .find_element(:class_name, 'Aq14fc')
-            .text
+      star_ave =
+        @d
+          .find_element(:class_name, 'review-score-container')
+          .find_element(:class_name, 'Aq14fc')
+          .text
 
-        facility = @d.find_element(:class_name, 'VUGnzb')
-        facility_name = facility.find_element(:class_name, 'P5Bobd').text
-        address = facility.find_element(:class_name, 'T6pBCe').text
-        hash = {
-          place_name: facility_name,
-          address: address,
-          star_ave: star_ave,
-        }
-        return hash
-      rescue StandardError
-        puts '口コミがありません'
-      end
+      facility = @d.find_element(:class_name, 'VUGnzb')
+      facility_name = facility.find_element(:class_name, 'P5Bobd').text
+      address = facility.find_element(:class_name, 'T6pBCe').text
+      hash = { place_name: facility_name, address: address, star_ave: star_ave }
+      return hash
     end
   end
 end
