@@ -5,11 +5,7 @@ module MyTools
     end
 
     def validate
-      if @url.include?('www.google.com')
-        return @url
-      else
-        false
-      end
+      @url.include?('www.google.com') ? true : false
     end
   end
 end

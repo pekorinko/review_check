@@ -38,9 +38,8 @@ class ResultsController < ApplicationController
     @url = url_filter.filter
 
     url_validator = MyTools::UrlValidator.new(@url)
-    validated_result = url_validator.validate
-    if validated_result
-      @url = validated_result
+
+    if url_validator.validate
       begin
         place_data_scraper = MyTools::PlaceDataScraper.new(@url)
         place = place_data_scraper.save_place
