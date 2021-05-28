@@ -51,10 +51,10 @@ class ResultsController < ApplicationController
         @result = check_credibility.credibility(user_id)
         redirect_to result_path(@result)
       rescue StandardError
-        redirect_to root_path, notice: '口コミの取得に失敗しました'
+        redirect_to root_path, alert: '口コミの取得に失敗しました'
       end
     else
-      redirect_to root_path, notice: '不正なURLです'
+      redirect_to root_path, alert: '不正なURLです'
     end
   end
 end

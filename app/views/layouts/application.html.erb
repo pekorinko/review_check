@@ -56,6 +56,16 @@
       </div>
     </nav>
   </div>
+  <header>
+    <% if flash.alert %>
+    <div class="alert alert-warning text-center mb-0 rounded-0 alert-dismissible fade show">
+      <%= flash.alert %>
+      <button class="close" data-dismiss="alert">
+        &times;
+      </button>
+    </div>
+    <% end %>
+  </header>
   <%= yield %>
   <footer class="text-center text-muted py-4">
     Copyright 2021 pekorinko
