@@ -35,6 +35,12 @@
     .bi {
       color: #18A2B8
     }
+
+    @media screen and (min-width: 768px) {
+      .br-sp {
+        display: none;
+      }
+    }
   </style>
 </head>
 
@@ -61,6 +67,7 @@
           </div>
           <div class="box-contents">
             Google星評価：<%= search_history.star_ave %>
+            <br class="br-sp">
             →厳選された星評価：<%= search_history.credible_star_ave %>
             <span data-toggle="tooltip" title="文字数50文字以上、投稿件数20件以上の投稿者に絞った評価" data-placement="bottom">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"

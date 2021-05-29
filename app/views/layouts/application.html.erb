@@ -21,6 +21,12 @@
     html {
       background: #EAF0FF;
     }
+
+    .info-icon {
+      position: relative;
+      top: 5px;
+      left: 0.1px;
+    }
   </style>
 </head>
 
@@ -33,16 +39,16 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse justify-content-start" id="menu">
-        <ul class="navbar-nav">
+        <div class="navbar-nav">
           <% if logged_in? %>
-          <li class="nav-item">
+          <div class="nav-item">
             <%= link_to "ログアウト", logout_path, class: "nav-link", method: :delete %>
-          </li>
+          </div>
           <% else %>
-          <li class="nav-item">
+          <div class="nav-item">
             <%= link_to "GitHubでログイン","/auth/github", class: "nav-link", method: :post %>
-          </li>
-          <li>
+          </div>
+          <div class="info-icon">
             <span class="font-weight-bold text-info" data-toggle="tooltip"
               title="ログインするとご自身が過去に調査した直近6件の調査結果を閲覧することが出来ます" data-placement="right">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -50,9 +56,9 @@
                 <path
                   d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
               </svg>
-          </li>
+          </div>
           <% end %>
-        </ul>
+        </div>
       </div>
     </nav>
   </div>
