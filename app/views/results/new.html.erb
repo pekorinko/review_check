@@ -1,8 +1,13 @@
+<h1>口コミチェックしたいURLを入力</h1>
+<%= form_with url: results_path, method: :post do |form| %>
+<%= form.text_field :url %>
+<%= form.submit %>
+<% end %>
 <h1>直近の検索結果</h1>
 <% @result_histories.each do |result_history| %>
-    <p>店舗名：<%= result_history.place.place_name %></p>
-    <p>住所：<%= result_history.place.address %></p>
-    <p>厳選された星評価：<%= result_history.credible_star_ave %></p>
-    <%= link_to "詳細へ", result_path(result_history.id) %>
+<p>店舗名：<%= result_history.place.place_name %></p>
+<p>住所：<%= result_history.place.address %></p>
+<p>厳選された星評価：<%= result_history.credible_star_ave %></p>
+<%= link_to "詳細へ", result_path(result_history.id) %>
 <% end %>
 <p>＊厳選された星評価＝文字数50文字以上かつ投稿件数20件以上の投稿者に絞った場合の星評価</p>

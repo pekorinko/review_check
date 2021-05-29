@@ -45,7 +45,6 @@ class ResultsController < ApplicationController
       place_id = place.id
       place_data_scraper.save_review(place_id)
       @place = place_data_scraper.save_place
-      user_id = session[:user_id]
       check_credibility = MyTools::CheckCredibility.new(place_id)
       @result = check_credibility.credibility(user_id)
       redirect_to result_path(@result)

@@ -6,9 +6,8 @@ module MyTools
       @place_id = place_id
     end
 
-    def credibility(user_id)
+    def credibility
       reviews = Review.where(place_id: @place_id)
-
       selected_reviews =
         reviews.filter_map do |review|
           review if review.text.size >= 50 and review.count >= 20
@@ -49,7 +48,6 @@ module MyTools
         text_ave: text_ave,
         credible_star_ave: credible_star_ave,
         place_id: @place_id,
-        user_id: user_id,
       )
     end
   end
