@@ -1,7 +1,6 @@
 <head>
   <style>
     .cover {
-      background: #00A082CC;
       background-size: cover;
     }
 
@@ -10,9 +9,11 @@
       box-sizing: border-box;
       width: 100%;
       text-align: center;
-      color: #7f4600;
-      background: #00A082CC;
-      border: 5px double #7bded9;
+      color: #5BC8AC;
+      border-style: solid;
+      /* background: #98DBC6; */
+      /* background: #5BC8AC; */
+      background: #FFF;
       border-radius: 1px;
     }
 
@@ -25,7 +26,7 @@
 
 <body class="mx-5">
   <header>
-    <div class="cover bg_dot py-3 px-3 text-white text-center">
+    <div class="cover bg_dot py-3 px-3 text-center">
       <h3 class="font-weight-bold text-center">調査したいGoogleの口コミURLを入力</h3>
       <div class='form-group'>
         <%= form_with url: results_path, class: "form_class", type: "url", method: :post do |form| %>
