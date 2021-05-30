@@ -64,6 +64,8 @@
   </div>
   <header>
     <% if flash.alert %>
+    <%# アラート表示の改善の為にposition-fixed w-100をクラスに追加、ただしHTML全体の構造自体がおかしいため、ブランチ整理作業完了後、HTML構造の修正作業に入る %>
+    <%# <div class="alert alert-warning text-center mb-0 rounded-0 alert-dismissible fade show position-fixed w-100"> %>
     <div class="alert alert-warning text-center mb-0 rounded-0 alert-dismissible fade show">
       <%= flash.alert %>
       <button class="close" data-dismiss="alert">

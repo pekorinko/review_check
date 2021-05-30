@@ -23,6 +23,8 @@ module MyTools
     end
 
     def save_place
+      # 口コミが無いGoogleのURLが入力された際に発生するbugの確認をするため、以下のbinding.pryはコメントとして残す
+      # binding.pry
       uri = URI.parse(@url)
       @lrd = uri.fragment.split('=')[1].split(',')[0]
       place = Place.find_by(lrd: @lrd)
