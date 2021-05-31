@@ -18,6 +18,7 @@
   <!-- Font Awesome CDN -->
   <script src="https://kit.fontawesome.com/3270c2a344.js" crossorigin="anonymous"></script>
   <style>
+    /* application.html.erbに対する設定 */
     html body .container {
       flex: 1;
       display: flex;
@@ -78,6 +79,55 @@
 
     .spinner-border {
       visibility: hidden;
+    }
+
+    /* 以下new.html.erbに関する設定 */
+    /* new.html.erbの直近の調査結果box全体に対する設定 */
+    .box30 {
+      margin: 1em 1em;
+      background: #f1f1f1;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.22);
+    }
+
+    .box30 .box-title {
+      font-size: 1.2em;
+      background: #00A082CC;
+      padding: 4px;
+      text-align: center;
+      color: #FFF;
+      font-weight: bold;
+      letter-spacing: 0.05em;
+    }
+
+    /* new.html.erbのサービス説明の見出しの色設定 */
+    h3.service-description-logo {
+      color: #4285F4;
+    }
+
+    .box30 .box-contents {
+      padding: 10px 15px;
+      margin: 0;
+    }
+
+    /* new.html.erbのboxタイトル部分の文字色指定 */
+    .place_name {
+      color: #FFF
+    }
+
+    /* new.html.erbのGoogleと厳選された星評価の比較でスマホの際は改行するための処理 */
+    @media screen and (min-width: 768px) {
+      .br-sp {
+        display: none;
+      }
+    }
+
+    /* new.html.erbのbox部分に設定されているクラス */
+    .recent-result {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      flex-flow: column;
+      width: 40%;
     }
   </style>
 </head>
@@ -179,6 +229,12 @@
         var $this = $(this);
         $this.replaceWith($this.text().replace(/(\S)/g, "<span>$&</span>"));
       }
+    });
+  </script>
+  <script>
+    $(function () {
+      'use strict';
+      $('[data-toggle="tooltip"]').tooltip();
     });
   </script>
 </body>
