@@ -45,16 +45,6 @@
 </head>
 
 <body>
-  <header>
-    <% if flash.notice %>
-    <div class="alert alert-info text-center mb-0 rounded-0 alert-dismissible fade show">
-      <%= flash.notice %>
-      <button class="close" data-dismiss="alert">
-        &times;
-      </button>
-    </div>
-    <% end %>
-  </header>
   <main>
     <section class="text-left">
       <h2 class="my-3 mx-5 font-weight-bold text-center"><%= current_user.name %>さんの調査履歴</h2>
