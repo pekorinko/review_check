@@ -21,7 +21,7 @@
           <div class="box-title"><span data-toggle="tooltip" title="クリックするとより詳細な情報を閲覧することが出来ます"
               data-placement="top"><%= link_to result_history.place.place_name, result_path(result_history.id),{class: "place_name"} %>
           </div>
-          <div class="box-contents">
+          <div class="box-contents font-weight-bold">
             Google星評価：<%= result_history.star_ave %>
             <br class="br-sp">
             →厳選された星評価：<%= result_history.credible_star_ave %>
