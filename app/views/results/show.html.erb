@@ -1,35 +1,37 @@
-    <section class="text-center">
-      <h3 class="my-3 mx-5 text-center" style="color:#5F6368;">調査結果</h3>
-      <div class="mt-3 mb-3 mx-5 recent-result">
-        <table class="table table-hover">
-          <thead class="table-title">
-            <tr>
-              <th>
-                <span data-toggle="tooltip" title="クリックするとGoogleの口コミ画面を閲覧できます"
-                  data-placement="right"><%= link_to @place.place_name, @place.url, {class: "place_name"} %>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>住所：<%= @place.address %></td>
-            </tr>
-            <tr>
-              <td class="star_ave font-weight-bold">
-                Google星評価：<%= @result.star_ave %>→
-                厳選された星評価：<%= @result.credible_star_ave %>
-                <span data-toggle="tooltip" title="文字数50文字以上、投稿件数20件以上の投稿者に絞った評価" data-placement="bottom">
-                  <i class="fas fa-info-circle" style="color: #25A7BC;"></i>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td>口コミ投稿者の平均投稿数：<%= @result.count_ave %></td>
-            </tr>
-            <tr>
-              <td>口コミ本文の平均文字数：<%= @result.text_ave %></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
+    <div id="content">
+      <section class="text-center">
+        <h3 class="my-3 mx-5 text-center" style="color:#5F6368;">調査結果</h3>
+        <div class="mt-3 mb-3 mx-5 search-result">
+          <table class="table table-hover">
+            <thead class="table-title">
+              <tr>
+                <th>
+                  <span data-toggle="tooltip" title="クリックするとGoogleの口コミ画面を閲覧できます"
+                    data-placement="right"><%= link_to @place.place_name, @place.url, {class: "place_name"} %>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>住所：<%= @place.address %></td>
+              </tr>
+              <tr>
+                <td class="star_ave font-weight-bold">
+                  Google星評価：<%= @result.star_ave %>→
+                  厳選された星評価：<%= @result.credible_star_ave %>
+                  <span data-toggle="tooltip" title="文字数50文字以上、投稿件数20件以上の投稿者に絞った評価" data-placement="bottom">
+                    <i class="fas fa-info-circle" style="color: #25A7BC;"></i>
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <td>口コミ投稿者の平均投稿数：<%= @result.count_ave %></td>
+              </tr>
+              <tr>
+                <td>口コミ本文の平均文字数：<%= @result.text_ave %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
