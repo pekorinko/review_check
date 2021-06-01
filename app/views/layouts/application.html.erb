@@ -106,8 +106,8 @@
       width: 100%;
     }
 
-    /* new.html.erbの説明書きと調査結果を囲んだもの */
-    div#content {
+    /* 各erbの要素を囲んだもの */
+    div.content {
       width: 1018px;
       overflow: hidden;
     }
@@ -138,6 +138,19 @@
       background: #f1f1f1;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.22);
       font-size: 120%;
+    }
+
+    /* index.html.erb（ログイン後画面）のbox部分 */
+    section.box-index-section {
+      width: 100%;
+      margin: 2em 0;
+      font-size: 120%;
+    }
+
+    /* index.html.erb（ログイン後画面）のbox部分 */
+    .recent-login-result {
+      margin: 0 auto;
+      padding: 20px;
     }
   </style>
 </head>
@@ -210,7 +223,7 @@
       </header>
     </div>
     <% if logged_in? %>
-    <h5 class="nav-item my-3 mx-3 text-center">ようこそ <%= current_user.name %>さん</h5>
+    <h5 class="nav-item my-3 mx-3 text-center" style="color:#5F6368;">ようこそ <%= current_user.name %>さん</h5>
     <% end %>
   </div>
   <%= yield %>
