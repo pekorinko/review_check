@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_25_015442) do
+ActiveRecord::Schema.define(version: 2021_05_23_111332) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 2021_04_25_015442) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "lrd"
+    t.float "star_ave"
+    t.string "url"
     t.index ["lrd"], name: "index_places_on_lrd", unique: true
   end
 
@@ -32,7 +34,9 @@ ActiveRecord::Schema.define(version: 2021_04_25_015442) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "place_id"
+    t.bigint "user_id"
     t.index ["place_id"], name: "index_results_on_place_id"
+    t.index ["user_id"], name: "index_results_on_user_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -56,5 +60,6 @@ ActiveRecord::Schema.define(version: 2021_04_25_015442) do
   end
 
   add_foreign_key "results", "places"
+  add_foreign_key "results", "users"
   add_foreign_key "reviews", "places"
 end
