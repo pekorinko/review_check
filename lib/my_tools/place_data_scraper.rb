@@ -3,6 +3,7 @@ module MyTools
     attr_reader :url
 
     def initialize(url)
+      #TODO: URLを二重管理しているのでなんとかする https://github.com/pekorinko/review_check/issues/71
       @url = url
       @scrape_process = MyTools::SeleniumTool.new(@url)
     end

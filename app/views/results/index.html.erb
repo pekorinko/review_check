@@ -1,102 +1,22 @@
-<head>
-  <style>
-    .box30 {
-      margin: 1em 1em;
-      background: #f1f1f1;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.22);
-    }
-
-    .box30 .box-title {
-      font-size: 1.2em;
-      background: #00A082CC;
-      padding: 4px;
-      text-align: center;
-      color: #FFF;
-      font-weight: bold;
-      letter-spacing: 0.05em;
-    }
-
-    .box30 .box-contents {
-      padding: 10px 15px;
-      margin: 0;
-    }
-
-    .recent-result {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .place_name {
-      color: #FFF
-    }
-
-    .bi {
-      color: #18A2B8
-    }
-
-    @media screen and (min-width: 768px) {
-      .br-sp {
-        display: none;
-      }
-    }
-  </style>
-</head>
-
-<body>
-  <header>
-    <% if flash.notice %>
-    <div class="alert alert-info text-center mb-0 rounded-0 alert-dismissible fade show">
-      <%= flash.notice %>
-      <button class="close" data-dismiss="alert">
-        &times;
-      </button>
-    </div>
-    <% end %>
-    <%= render partial: 'results/form' %>
-  </header>
-  <main>
-    <section class="text-left">
-      <h2 class="my-3 mx-5 font-weight-bold text-center"><%= current_user.name %>さんの調査履歴</h2>
-      <div class="mt-3 mb-3 mx-5 recent-result">
-        <% @search_histories.each do |search_history| %>
-        <div class="box30">
-          <div class="box-title">
-            <%= link_to search_history.place_name, result_path(search_history.result_id), {class: "place_name"} %>
-          </div>
-          <div class="box-contents">
-            Google星評価：<%= search_history.star_ave %>
-            <br class="br-sp">
-            →厳選された星評価：<%= search_history.credible_star_ave %>
-            <span data-toggle="tooltip" title="文字数50文字以上、投稿件数20件以上の投稿者に絞った評価" data-placement="bottom">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                class="bi bi-info-circle-fill" viewBox="0 0 16 16">
-                <path
-                  d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
-              </svg>
-            </span>
-          </div>
+<div class="content">
+  <section class="text-center box-index-section">
+    <h2 class="my-3 mx-5 text-center" style="color:#5F6368;"><%= current_user.name %>さんの調査履歴</h2>
+    <div class="mt-3 mb-3 mx-5 recent-login-result">
+      <% @search_histories.each do |search_history| %>
+      <div class="box30">
+        <div class="box-title">
+          <%= link_to search_history.place_name, result_path(search_history.result_id), {class: "place_name"} %>
         </div>
-        <% end %>
+        <div class="box-contents">
+          Google星評価：<%= search_history.star_ave %>
+          <br class="br-sp">
+          →厳選された星評価：<%= search_history.credible_star_ave %>
+          <span data-toggle="tooltip" title="文字数50文字以上、投稿件数20件以上の投稿者に絞った評価" data-placement="bottom">
+            <i class="fas fa-info-circle" style="color:#18A2B8;"></i>
+          </span>
+        </div>
       </div>
-    </section>
-    <main>
-      <!-- Optional JavaScript -->
-      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-      </script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
-        integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous">
-      </script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
-        integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous">
-      </script>
-      <script>
-        $(function () {
-          'use strict';
-          $('[data-toggle="tooltip"]').tooltip();
-        });
-      </script>
-</body>
+      <% end %>
+    </div>
+  </section>
+</div>

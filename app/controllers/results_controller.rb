@@ -23,7 +23,7 @@ class ResultsController < ApplicationController
 
   def new
     @result_histories =
-      Result.select('DISTINCT ON (place_id) *').order(place_id: :desc).limit(6)
+      Result.select('DISTINCT ON (place_id) *').order(place_id: :desc).limit(3)
   end
 
   def show

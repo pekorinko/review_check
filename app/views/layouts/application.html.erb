@@ -18,8 +18,41 @@
   <!-- Font Awesome CDN -->
   <script src="https://kit.fontawesome.com/3270c2a344.js" crossorigin="anonymous"></script>
   <style>
-    html {
-      background: #EAF0FF;
+    /* application.html.erbに対する設定 */
+    body {
+      margin-right: auto;
+      margin-left: auto;
+      width: 95%;
+    }
+
+    h3 {
+      white-space: nowrap;
+    }
+
+    div.container-fluid {
+      width: 95%;
+      padding: 0;
+    }
+
+    div.content {
+      width: 95%;
+      overflow: hidden;
+    }
+
+    div#description {
+      width: 95%;
+      margin-top: 1em;
+    }
+
+    section.box-section {
+      width: 95%;
+      margin-top: 4.5em;
+    }
+
+    html body .container {
+      flex: 1;
+      display: flex;
+      flex-direction: row;
     }
 
     .info-icon {
@@ -27,53 +60,234 @@
       top: 5px;
       left: 0.1px;
     }
+
+    .navbar.navbar-brand {
+      color: #4285F4;
+    }
+
+    .brand {
+      position: relative;
+      color: #4285F4;
+    }
+
+    .cover {
+      background-size: cover;
+      margin: auto;
+      box-sizing: border-box;
+      width: 100%;
+      text-align: center;
+      color: #4285F4;
+      border-style: solid;
+      border-color: #4285F4;
+      background: #FFF;
+      border-radius: 1px;
+    }
+
+    .spinner-border {
+      visibility: hidden;
+    }
+
+    /* 以下new.html.erbに関する設定 */
+    /* new.html.erbの直近の調査結果box全体に対する設定 */
+    .box30 {
+      margin: 1em 1em;
+      background: #f1f1f1;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.22);
+    }
+
+    .box30 .box-title {
+      font-size: 1.2em;
+      background: #4285F4;
+      padding: 4px;
+      text-align: center;
+      color: #FFF;
+      letter-spacing: 0.05em;
+    }
+
+    /* new.html.erbのサービス説明の見出しの色設定 */
+    h3.service-description-logo {
+      color: #4285F4;
+    }
+
+    .box30 .box-contents {
+      padding: 5px 10px;
+      margin: 0;
+      font-size: 120%;
+    }
+
+    /* new.html.erbのboxタイトル部分の文字色指定 */
+    .place_name {
+      color: #FFF
+    }
+
+    /* new.html.erbのGoogleと厳選された星評価の比較でスマホの際は改行するための処理 */
+    @media screen and (min-width: 768px) {
+      .br-sp {
+        display: none;
+      }
+    }
+
+    /* new.html.erbのbox部分に設定されているクラス */
+    .recent-result {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      flex-flow: column;
+      width: 100%;
+    }
+
+
+    div.content {
+      width: 100%;
+      overflow: hidden;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    section.box-section {
+      width: 625px;
+      float: right;
+    }
+
+    @media (min-width: 1024px) {
+
+      /* 各erbの要素を囲んだもの */
+      body {
+        margin-right: auto;
+        margin-left: auto;
+        width: 100%%;
+        max-width: 1280px;
+        min-width: 300px;
+      }
+
+      div.container-fluid {
+        width: 1280px;
+        padding: 0;
+      }
+
+      div.content {
+        width: 1250px;
+        overflow: hidden;
+      }
+
+      div#description {
+        width: 625px;
+        float: left;
+        margin-top: 4.5em;
+        padding-left: 30px;
+      }
+
+      section.box-section {
+        width: 625px;
+        float: right;
+      }
+    }
+
+    /* show.html.erbの設定 */
+    .table-title {
+      font-size: 1.2em;
+      background: #4185F4;
+      padding: 4px;
+      text-align: center;
+      color: #FFF;
+      font-weight: bold;
+      letter-spacing: 0.05em;
+    }
+
+    table {
+      margin: 2em 0;
+      background: #f1f1f1;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.22);
+      font-size: 120%;
+    }
+
+    /* index.html.erb（ログイン後画面）のbox部分 */
+    section.box-index-section {
+      width: 100%;
+      margin: 2em 0;
+      font-size: 120%;
+    }
+
+    /* index.html.erb（ログイン後画面）のbox部分 */
+    .recent-login-result {
+      margin: 0 auto;
+      padding: 20px;
+    }
   </style>
 </head>
 
 
-<body class="mx-5">
-  <div class="container">
-    <nav class="navbar navbar-expand-sm navbar-light bg-white">
-      <a href="/" class="navbar-brand ml-3 font-weight-bold">review_check</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-start" id="menu">
-        <div class="navbar-nav">
-          <% if logged_in? %>
-          <div class="nav-item">
-            <%= link_to "ログアウト", logout_path, class: "nav-link", method: :delete %>
+<body>
+  <div class="main_container">
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-sm navbar-light bg-white">
+        <a href="/" class="navbar-brand ml-3 font-weight-bold"><span class="brand">口コミ探偵<i
+              class="fas fa-search ml-1"></i></span></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-start" id="menu">
+          <div class="navbar-nav">
+            <% if logged_in? %>
+            <div class="nav-item">
+              <%= link_to "ログアウト", logout_path, class: "nav-link", method: :delete %>
+            </div>
+            <% else %>
+            <div class="nav-item">
+              <%= link_to "GitHubでログイン","/auth/github", class: "nav-link", method: :post %>
+            </div>
+            <div class="info-icon">
+              <span class="font-weight-bold text-info" data-toggle="tooltip"
+                title="ログインするとご自身が過去に調査した直近6件の調査結果を閲覧することが出来ます" data-placement="right">
+                <i class="fas fa-info-circle"></i>
+              </span>
+            </div>
+            <% end %>
           </div>
-          <% else %>
-          <div class="nav-item">
-            <%= link_to "GitHubでログイン","/auth/github", class: "nav-link", method: :post %>
-          </div>
-          <div class="info-icon">
-            <span class="font-weight-bold text-info" data-toggle="tooltip"
-              title="ログインするとご自身が過去に調査した直近6件の調査結果を閲覧することが出来ます" data-placement="right">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                class="bi bi-info-circle-fill" viewBox="0 0 16 16">
-                <path
-                  d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
-              </svg>
-          </div>
-          <% end %>
         </div>
-      </div>
-    </nav>
-  </div>
-  <header>
-    <% if flash.alert %>
-    <%# アラート表示の改善の為にposition-fixed w-100をクラスに追加、ただしHTML全体の構造自体がおかしいため、ブランチ整理作業完了後、HTML構造の修正作業に入る %>
-    <%# <div class="alert alert-warning text-center mb-0 rounded-0 alert-dismissible fade show position-fixed w-100"> %>
-    <div class="alert alert-warning text-center mb-0 rounded-0 alert-dismissible fade show">
-      <%= flash.alert %>
-      <button class="close" data-dismiss="alert">
-        &times;
-      </button>
+      </nav>
     </div>
+    <div class="container-fluid">
+      <header>
+        <% if flash.alert %>
+        <%# アラート表示の改善の為にposition-fixed w-100をクラスに追加、ただしHTML全体の構造自体がおかしいため、ブランチ整理作業完了後、HTML構造の修正作業に入る %>
+        <%# <div class="alert alert-warning text-center mb-0 rounded-0 alert-dismissible fade show position-fixed w-100"> %>
+        <div class="alert alert-warning text-center mb-0 rounded-0 alert-dismissible fade show">
+          <%= flash.alert %>
+          <button class="close" data-dismiss="alert">
+            &times;
+          </button>
+        </div>
+        <% end %>
+
+        <% if flash.notice %>
+        <div class="alert alert-info text-center mb-0 rounded-0 alert-dismissible fade show">
+          <%= flash.notice %>
+          <button class="close" data-dismiss="alert">
+            &times;
+          </button>
+        </div>
+        <% end %>
+
+        <div class="cover py-3 px-3 text-center">
+          <h3 class="font-weight-bold text-center" style="color:#5F6368;">調査したいGoogleの口コミURLを入力</h3>
+          <div class='form-group'>
+            <%= form_with url: results_path, class: "form_class", type: "url", method: :post do |form| %>
+            <%= form.text_field :url, size: 40, type: "url", :placeholder => "https://www.google.com/search?q=%E3%81%8A%E3%81%B5%E3%82%8D%E3%81%AE%E7%8E%8B%E6%A7%98&rlz=1C5CHFA_enJP939JP939&oq=%E3%81%8A%E3%81%B5%E3%82%8D%E3%81%AE%E7%8E%8B%E6%A7%98&aqs=chrome..69i57j69i4i37i59i433j0i4i37l2j0i3i4i37l2j0i4i37l4.4470j0j4&sourceid=chrome&ie=UTF-8&tbs=lf:1,lf_ui:4&tbm=lcl&sxsrf=ALeKk02rtu-Qaa_POQgcYLmoqqO0SZT-kg:1621642123591&rflfq=1&num=10&rldimm=17114517395868596048&lqi=ChLjgYrjgbXjgo3jga7njovmp5giA4gBAUjkvc395YCAgAhaPAoU44GK44G144KNIOOBriDnjovmp5gQABABEAIYABgBGAIiFOOBiuOBteOCjSDjga4g546L5qeYKgIIApIBEXN1cGVyX3B1YmxpY19iYXRoqgEcEAEqGCIU44GK44G144KNIOOBriDnjovmp5goCA&ved=2ahUKEwjk0OrV_9vwAhWjGqYKHY0oCuQQvS4wB3oECA0QHA&rlst=f#lrd=0x6018f89e6a7fa0a5:0x46c7d93faecaae12,1,,,&rlfi=hd:;si:5100283970559061522,l,ChLjgYrjgbXjgo3jga7njovmp5giA4gBAUjxlaDu5YCAgAhaPAoU44GK44G144KNIOOBriDnjovmp5gQABABEAIYABgBGAIiFOOBiuOBteOCjSDjga4g546L5qeYKgIIApIBEXN1cGVyX3B1YmxpY19iYXRoqgEcEAEqGCIU44GK44G144KNIOOBriDnjovmp5goCA;mv:[[35.8713963,139.753359],[35.357272699999996,139.393384]]" %>
+            <%= form.submit value="調査", class: "form_btn_class", onclick: "OnButtonClick();"%>
+            <div class="spinner-border" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </header>
+    </div>
+    <% if logged_in? %>
+    <h5 class="nav-item my-3 mx-3 text-center" style="color:#5F6368;">ようこそ <%= current_user.name %>さん</h5>
     <% end %>
-  </header>
+  </div>
   <%= yield %>
   <footer class="text-center text-muted py-4">
     Copyright 2021 pekorinko
@@ -88,6 +302,25 @@
   </script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
     integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous">
+  </script>
+  <script language="javascript" type="text/javascript">
+    function OnButtonClick() {
+      document.getElementsByClassName("spinner-border")[0].style.visibility = "visible";
+    }
+  </script>
+  <script type="text/javascript">
+    $(".colorful").children().addBack().contents().each(function () {
+      if (this.nodeType == 3) {
+        var $this = $(this);
+        $this.replaceWith($this.text().replace(/(\S)/g, "<span>$&</span>"));
+      }
+    });
+  </script>
+  <script>
+    $(function () {
+      'use strict';
+      $('[data-toggle="tooltip"]').tooltip();
+    });
   </script>
 </body>
 
