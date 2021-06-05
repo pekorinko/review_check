@@ -1,8 +1,37 @@
-<h1>直近の検索結果</h1>
-<% @result_histories.each do |result_history| %>
-    <p>店舗名：<%= result_history.place.place_name %></p>
-    <p>住所：<%= result_history.place.address %></p>
-    <p>厳選された星評価：<%= result_history.credible_star_ave %></p>
-    <%= link_to "詳細へ", result_path(result_history.id) %>
-<% end %>
-<p>＊厳選された星評価＝文字数50文字以上かつ投稿件数20件以上の投稿者に絞った場合の星評価</p>
+  <div class="content">
+    <div id="description">
+      <h3 class="service-description-logo text-center">口コミ探偵とは</h3>
+      <h6>
+        <div class="service-description text-center">
+          Googleの口コミから<br>頻繁に投稿しているユーザー・文字数が多い投稿に絞った<br>
+          <span class="font-weight-bold">
+            「厳選された星評価」
+          </span>
+          <span data-toggle="tooltip" title="文字数50文字以上、投稿件数20件以上の投稿者に絞った評価" data-placement="bottom">
+            <i class="fas fa-info-circle" style="color: #25A7BC;"></i>
+          </span>
+          を知れるアプリ
+        </div>
+      </h6>
+      <%= image_tag 'google_review_url.png',:size=>'600x280', :style=>"padding-left:40px"%>
+    </div>
+
+    <section class="text-center box-section">
+      <h3 class="my-3 mx-5 text-center" style="color:#5F6368; width: 100%;">直近の調査結果</h3>
+
+      <div class="mt-3 mb-3 mx-5 recent-result">
+        <% @result_histories.each do |result_history| %>
+        <div class="box30">
+          <div class="box-title"><span data-toggle="tooltip" title="クリックするとより詳細な情報を閲覧することが出来ます"
+              data-placement="top"><%= link_to result_history.place.place_name, result_path(result_history.id),{class: "place_name"} %>
+          </div>
+          <div class="box-contents">
+            Google星評価：<span class="font-weight-bold"><%= result_history.star_ave %></span>
+            <br class="br-sp">
+            →厳選された星評価：<span class="font-weight-bold"><%= result_history.credible_star_ave %></span>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </section>
+  </div>
