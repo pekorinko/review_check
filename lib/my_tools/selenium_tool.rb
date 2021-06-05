@@ -3,10 +3,8 @@ module MyTools
     attr_reader :url
     def initialize(url)
       @url = url
-
       options = Selenium::WebDriver::Chrome::Options.new
-
-      # options.add_argument('--headless')
+      options.add_argument('--headless')
       @driver = Selenium::WebDriver.for :chrome, options: options
       @wait = Selenium::WebDriver::Wait.new(timeout: 30)
       @driver.get(@url)
@@ -111,10 +109,16 @@ module MyTools
     end
 
     def fetch_place
+      star_ave =
+        @driver
+          .find_element(:class_name, 'review-score-container')
+          .find_element(:class_name, 'Aq14fc')
+          .text
+      
       facility = @driver.find_element(:class_name, 'VUGnzb')
       facility_name = facility.find_element(:class_name, 'P5Bobd').text
       address = facility.find_element(:class_name, 'T6pBCe').text
-      hash = { place_name: facility_name, address: address }
+      hash = { place_name: facility_name, address: address, star_ave: star_ave }
       return hash
     end
   end

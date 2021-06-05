@@ -1,9 +1,23 @@
-<h2 class="my-5 mx-5"><%= current_user.name %>さんの閲覧履歴</h2>
-<% @search_histories.each do |search_history| %>
-    <div class="mt-3 mb-3 mx-5">
-        <p>店舗名：<%= search_history.place_name %></p>
-        <p>平均星評価：<%= search_history.star_ave %></p>
-        <p>厳選された星評価：<%= search_history.credible_star_ave %></p>
-        <%= link_to "詳細へ", result_path(search_history.result_id) %>
+<div class="content">
+  <section class="text-center box-index-section">
+    <h2 class="my-3 mx-5 text-center" style="color:#5F6368;"><%= current_user.name %>さんの調査履歴</h2>
+    <div class="mt-3 mb-3 mx-5 recent-login-result">
+      <% @search_histories.each do |search_history| %>
+      <div class="box30">
+        <div class="box-title">
+          <%= link_to search_history.place_name, result_path(search_history.result_id), {class: "place_name"} %>
+        </div>
+        <div class="box-contents">
+          Google星評価：<%= search_history.star_ave %>
+          <br class="br-sp">
+          →厳選された星評価：<%= search_history.credible_star_ave %>
+          <span data-toggle="tooltip" title="文字数50文字以上、投稿件数20件以上の投稿者に絞った評価" data-placement="bottom">
+            <i class="fas fa-info-circle" style="color:#18A2B8;"></i>
+          </span>
+        </div>
+      </div>
+      <% end %>
     </div>
- <% end %>
+  </section>
+</div>
+>>>>>>> cab2ad8a687c414e95bf825ae59e7cf6b97eb2c5

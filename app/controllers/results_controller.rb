@@ -7,7 +7,7 @@ class ResultsController < ApplicationController
         .results
         .select('DISTINCT ON (place_id) *')
         .order(place_id: :desc)
-        .limit(5)
+        .limit(6)
     @search_histories =
       search_histories.map do |search_history|
         place = Place.find(search_history.place_id)
@@ -15,7 +15,7 @@ class ResultsController < ApplicationController
           search_history.id,
           place.id,
           place.place_name,
-          search_history.star_ave,
+          place.star_ave,
           search_history.credible_star_ave,
         )
       end
@@ -23,7 +23,7 @@ class ResultsController < ApplicationController
 
   def new
     @result_histories =
-      Result.select('DISTINCT ON (place_id) *').order(place_id: :desc).limit(5)
+      Result.select('DISTINCT ON (place_id) *').order(place_id: :desc).limit(3)
   end
 
   def show
@@ -38,19 +38,23 @@ class ResultsController < ApplicationController
     @url = url_filter.filter
 
     url_validator = MyTools::UrlValidator.new(@url)
-    if url_validator.validate
-      @url = url_validator.validate
-      place_data_scraper = MyTools::PlaceDataScraper.new(@url)
-      place = place_data_scraper.save_place
-      place_id = place.id
-      place_data_scraper.save_review(place_id)
-      @place = place_data_scraper.save_place
-      user_id = session[:user_id]
-      check_credibility = MyTools::CheckCredibility.new(place_id)
-      @result = check_credibility.credibility(user_id)
-      redirect_to result_path(@result)
-    elsif @url.exclude?('www.google.com') && !url_validator.validate
-      redirect_to root_path, notice: '不正なURLです'
+
+    if url_validator.valid?
+      begin
+        place_data_scraper = MyTools::PlaceDataScraper.new(@url)
+        place = place_data_scraper.save_place
+        place_id = place.id
+        place_data_scraper.save_review(place_id)
+        @place = place_data_scraper.save_place
+        user_id = session[:user_id]
+        check_credibility = MyTools::CheckCredibility.new(place_id)
+        @result = check_credibility.credibility(user_id)
+        redirect_to result_path(@result)
+      rescue StandardError
+        redirect_to root_path, alert: '口コミの取得に失敗しました'
+      end
+    else
+      redirect_to root_path, alert: '不正なURLです'
     end
   end
 end
