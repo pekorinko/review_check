@@ -4,12 +4,8 @@ module MyTools
       @url = url
     end
 
-    def validate
-      if @url.include?('www.google.com')
-        return @url
-      else
-        false
-      end
+    def valid?
+      @url.include?('www.google.com')
     end
   end
 end
