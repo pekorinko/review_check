@@ -4,8 +4,8 @@ module MyTools
 
     def initialize(url)
       #TODO: URLを二重管理しているのでなんとかする https://github.com/pekorinko/review_check/issues/71
-      @url = url
-      @scrape_process = MyTools::SeleniumTool.new(@url)
+      @scrape_process = MyTools::SeleniumTool.new(url)
+      @url = @scrape_process.url
     end
 
     def save_review(place_id)
