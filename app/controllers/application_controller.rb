@@ -15,6 +15,6 @@ class ApplicationController < ActionController::Base
 
   def authenticate
     return if logged_in?
-    redirect_to 'http://www.pikawaka.com'
+    redirect_to user_root_path
   end
 end
