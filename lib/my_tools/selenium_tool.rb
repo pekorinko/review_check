@@ -5,7 +5,7 @@ module MyTools
       @url = url
       options = Selenium::WebDriver::Chrome::Options.new
 
-      # options.add_argument('--headless')
+      options.add_argument('--headless')
       @driver = Selenium::WebDriver.for :chrome, options: options
       @wait = Selenium::WebDriver::Wait.new(timeout: 30)
       @driver.get(@url)
