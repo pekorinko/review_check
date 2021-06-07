@@ -1,12 +1,12 @@
 module MyTools
-  class CheckCredibility
+  class CredibilityChecker
     attr_reader :place_id
 
     def initialize(place_id)
       @place_id = place_id
     end
 
-    def credibility(user_id)
+    def check(user_id)
       reviews = Review.where(place_id: @place_id)
 
       selected_reviews =

@@ -48,8 +48,8 @@ class ResultsController < ApplicationController
         place_data_scraper.save_review(place_id)
         @place = place_data_scraper.save_place
         user_id = session[:user_id]
-        check_credibility = MyTools::CheckCredibility.new(place_id)
-        @result = check_credibility.credibility(user_id)
+        check_credibility = MyTools::CredibilityChecker.new(place_id)
+        @result = check_credibility.check(user_id)
         redirect_to result_path(@result)
       rescue StandardError
         redirect_to root_path, alert: '口コミの取得に失敗しました'
