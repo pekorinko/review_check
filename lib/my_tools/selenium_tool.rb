@@ -4,9 +4,10 @@ module MyTools
     def initialize(url)
       @url = url
       options = Selenium::WebDriver::Chrome::Options.new
-      options.add_argument('--headless')
+
+      # options.add_argument('--headless')
       @driver = Selenium::WebDriver.for :chrome, options: options
-      wait = Selenium::WebDriver::Wait.new(timeout: 30)
+      @wait = Selenium::WebDriver::Wait.new(timeout: 30)
       @driver.get(@url)
 
       # モーダルが来ても検索結果が来てもページが表示されたか判別出来るなにかをする
