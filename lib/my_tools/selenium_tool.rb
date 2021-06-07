@@ -12,7 +12,7 @@ module MyTools
       # モーダルが来ても検索結果が来てもページが表示されたか判別出来るなにかをする
       # begin rescueを使ってタイムアウトしたということは検索画面URLだったと判断する
       begin
-        wait.until { @driver.find_element(:class_name, 'lcorif').displayed? }
+        @wait.until { @driver.find_element(:class_name, 'lcorif').displayed? }
       rescue StandardError
         replace_url_if_needed
       end
