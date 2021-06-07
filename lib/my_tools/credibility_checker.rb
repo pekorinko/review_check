@@ -38,7 +38,7 @@ module MyTools
       text_ave = text_total / texts.length
       begin
         star_ave = selected_star_total / selected_stars.length
-        credible_star_ave = BigDecimal(star_ave.to_s).floor(1).to_f
+        credible_star_ave = star_ave.to_f.floor(1)
       rescue StandardError
         credible_star_ave = '厳選された星評価基準を満たす投稿がありません'
       end
