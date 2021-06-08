@@ -49,6 +49,7 @@ module MyTools
         text_ave: text_ave,
         credible_star_ave: credible_star_ave,
         place_id: @place_id,
+        user_id: user_id,
       )
     end
   end
