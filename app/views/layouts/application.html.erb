@@ -22,39 +22,19 @@
     body {
       margin-right: auto;
       margin-left: auto;
-      width: 95%;
+      /* width: 95%; */
     }
 
     div.container-fluid {
-
       padding: 0;
     }
 
-    div.content {
-      width: 95%;
-      overflow: hidden;
-    }
-
     div#description {
-      width: 95%;
       margin-top: 1em;
     }
 
-    section.box-section {
-      width: 95%;
-      margin-top: 4.5em;
-    }
-
-    html body .container {
-      flex: 1;
-      display: flex;
-      flex-direction: row;
-    }
-
-    .info-icon {
-      position: relative;
-      top: 5px;
-      left: 0.1px;
+    .login_description {
+      display: inline-block;
     }
 
     .navbar.navbar-brand {
@@ -152,7 +132,7 @@
       body {
         margin-right: auto;
         margin-left: auto;
-        width: 100%%;
+        width: 100%;
         max-width: 1280px;
         min-width: 300px;
       }
@@ -177,6 +157,7 @@
       section.box-section {
         width: 625px;
         float: right;
+        margin-top: 4.5em;
       }
     }
 
@@ -219,23 +200,16 @@
     <nav class="navbar navbar-expand-sm navbar-light bg-white">
       <a href="/" class="navbar-brand ml-3 font-weight-bold"><span class="brand">口コミ探偵<i
             class="fas fa-search ml-1"></i></span></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-start" id="menu">
+      <div class="justify-content-start" id="menu">
         <div class="navbar-nav">
           <% if logged_in? %>
           <div class="nav-item">
             <%= link_to "ログアウト", logout_path, class: "nav-link", method: :delete %>
           </div>
           <% else %>
-          <div class="nav-item">
-            <%= link_to "GitHubでログイン","/auth/github", class: "nav-link", method: :post %>
-          </div>
-          <div class="info-icon">
-            <span class="font-weight-bold text-info" data-toggle="tooltip"
-              title="ログインするとご自身が過去に調査した直近6件の調査結果を閲覧することが出来ます" data-placement="right">
-              <i class="fas fa-info-circle"></i>
+          <div class="nav-item login_description">
+            <span data-toggle="tooltip" title="ログインするとご自身の直近6件の調査履歴を確認出来ます" data-placement="right">
+              <%= link_to "GitHubでログイン","/auth/github", class: "nav-link", method: :post %>
             </span>
           </div>
           <% end %>
