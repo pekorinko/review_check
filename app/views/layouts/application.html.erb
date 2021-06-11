@@ -29,10 +29,6 @@
       padding: 0;
     }
 
-    .login_description {
-      display: inline-block;
-    }
-
     .navbar.navbar-brand {
       color: #4285F4;
     }
@@ -179,14 +175,13 @@
     }
 
     /* index.html.erb（ログイン後画面）のbox部分 */
-    section.box-index-section {
+    div.result {
       width: 100%;
       margin: 2em 0;
       font-size: 120%;
     }
 
-    /* index.html.erb（ログイン後画面）のbox部分 */
-    .recent-login-result {
+    .result-content {
       margin: 0 auto;
       padding: 20px;
     }
@@ -202,11 +197,9 @@
       <div class="justify-content-start" id="menu">
         <div class="navbar-nav">
           <% if logged_in? %>
-          <div class="nav-item">
-            <%= link_to "ログアウト", logout_path, class: "nav-link", method: :delete %>
-          </div>
+          <%= link_to "ログアウト", logout_path, class: "nav-link", method: :delete %>
           <% else %>
-          <div class="nav-item login_description">
+          <div class="login_description">
             <span data-toggle="tooltip" title="ログインするとご自身の直近6件の調査履歴を確認出来ます" data-placement="right">
               <%= link_to "GitHubでログイン","/auth/github", class: "nav-link", method: :post %>
             </span>
@@ -251,9 +244,6 @@
       </div>
     </header>
   </div>
-  <% if logged_in? %>
-  <h5 class="nav-item my-3 mx-3 text-center" style="color:#5F6368;">ようこそ <%= current_user.name %>さん</h5>
-  <% end %>
   <%= yield %>
   <footer class="text-center text-muted py-4">
     Copyright 2021 pekorinko
