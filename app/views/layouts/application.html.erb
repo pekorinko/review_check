@@ -29,10 +29,6 @@
       padding: 0;
     }
 
-    div#description {
-      margin-top: 1em;
-    }
-
     .login_description {
       display: inline-block;
     }
@@ -103,7 +99,16 @@
       }
     }
 
-    /* new.html.erbのbox部分に設定されているクラス */
+    /*new.html.erbのサービス説明部分*/
+    div.description {
+      margin-top: 1em;
+    }
+
+    /*new.html.erbの直近の調査結果部分*/
+    div.recent-result-block {
+      margin-top: 1em;
+    }
+
     .recent-result {
       display: flex;
       flex-wrap: wrap;
@@ -112,18 +117,12 @@
       width: 100%;
     }
 
-
     div.content {
       width: 100%;
       overflow: hidden;
       text-align: center;
       margin-left: auto;
       margin-right: auto;
-    }
-
-    section.box-section {
-      width: 625px;
-      float: right;
     }
 
     @media (min-width: 1024px) {
@@ -147,14 +146,14 @@
         overflow: hidden;
       }
 
-      div#description {
+      div.description {
         width: 625px;
         float: left;
         margin-top: 4.5em;
         padding-left: 30px;
       }
 
-      section.box-section {
+      div.recent-result-block {
         width: 625px;
         float: right;
         margin-top: 4.5em;
