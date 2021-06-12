@@ -5,7 +5,24 @@ module MyTools
       @url = url
       options = Selenium::WebDriver::Chrome::Options.new
       options.add_argument('--headless')
-      @driver = Selenium::WebDriver.for :chrome, options: options
+      caps =
+        if Rails.env.production?
+          Selenium::WebDriver::Remote::Capabilities.chrome(
+            'chromeOptions' => {
+              binary: ENV['GOOGLE_CHROME_SHIM'],
+              args: %w[--headless --disable-gpu window-size=1280x800],
+            },
+          )
+        end
+      if Rails.env.production?
+        @driver =
+          Selenium::WebDriver.for :chrome,
+                                  options: options,
+                                  desired_capabilities: caps
+      else
+        @driver = Selenium::WebDriver.for :chrome, options: options
+      end
+
       @wait = Selenium::WebDriver::Wait.new(timeout: 30)
       @driver.get(@url)
 
