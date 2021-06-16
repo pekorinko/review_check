@@ -27,13 +27,13 @@ ActiveRecord::Schema.define(version: 2021_05_23_111332) do
   end
 
   create_table "results", force: :cascade do |t|
-    t.float "star_ave"
     t.integer "count_ave"
     t.integer "text_ave"
     t.float "credible_star_ave"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "place_id"
+    t.float "star_ave"
     t.bigint "user_id"
     t.index ["place_id"], name: "index_results_on_place_id"
     t.index ["user_id"], name: "index_results_on_user_id"

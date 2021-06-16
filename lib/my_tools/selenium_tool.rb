@@ -5,14 +5,31 @@ module MyTools
       @url = url
       options = Selenium::WebDriver::Chrome::Options.new
       options.add_argument('--headless')
-      @driver = Selenium::WebDriver.for :chrome, options: options
+      caps =
+        if Rails.env.production?
+          Selenium::WebDriver::Remote::Capabilities.chrome(
+            'chromeOptions' => {
+              binary: ENV['GOOGLE_CHROME_SHIM'],
+              args: %w[--headless --disable-gpu window-size=1280x800],
+            },
+          )
+        end
+      if Rails.env.production?
+        @driver =
+          Selenium::WebDriver.for :chrome,
+                                  options: options,
+                                  desired_capabilities: caps
+      else
+        @driver = Selenium::WebDriver.for :chrome, options: options
+      end
+
       @wait = Selenium::WebDriver::Wait.new(timeout: 30)
       @driver.get(@url)
 
       # モーダルが来ても検索結果が来てもページが表示されたか判別出来るなにかをする
       # begin rescueを使ってタイムアウトしたということは検索画面URLだったと判断する
       begin
-        wait.until { @driver.find_element(:class_name, 'lcorif').displayed? }
+        @wait.until { @driver.find_element(:class_name, 'lcorif').displayed? }
       rescue StandardError
         replace_url_if_needed
       end
@@ -114,7 +131,7 @@ module MyTools
           .find_element(:class_name, 'review-score-container')
           .find_element(:class_name, 'Aq14fc')
           .text
-      
+
       facility = @driver.find_element(:class_name, 'VUGnzb')
       facility_name = facility.find_element(:class_name, 'P5Bobd').text
       address = facility.find_element(:class_name, 'T6pBCe').text
