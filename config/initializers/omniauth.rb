@@ -5,7 +5,9 @@ Rails.application.config.middleware.use OmniAuth::Builder do
              Rails.application.credentials.github[:client_secret_dev]
   else
     provider :github,
-             Rails.application.credentials.github[:client_id],
-             Rails.application.credentials.github[:client_secret]
+             #  Rails.application.credentials.github[:client_id],
+             #  Rails.application.credentials.github[:client_secret],
+             ENV['GITHUB_CLIENT_ID'],
+             ENV['GITHUB_CLIENT_SECRET']
   end
 end
