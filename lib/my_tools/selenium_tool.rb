@@ -25,6 +25,7 @@ module MyTools
 
       @wait = Selenium::WebDriver::Wait.new(timeout: 30)
       @driver.get(@url)
+      @driver.save_screenshot(Rails.root.join('public', 'test.png').to_s)
 
       # モーダルが来ても検索結果が来てもページが表示されたか判別出来るなにかをする
       # begin rescueを使ってタイムアウトしたということは検索画面URLだったと判断する
