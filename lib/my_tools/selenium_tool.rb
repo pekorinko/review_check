@@ -10,7 +10,13 @@ module MyTools
           Selenium::WebDriver::Remote::Capabilities.chrome(
             'chromeOptions' => {
               binary: ENV['GOOGLE_CHROME_SHIM'],
-              args: %w[--headless --disable-gpu window-size=1280x800],
+              args: %w[
+                --headless
+                --disable-gpu
+                window-size=1280x800
+                --no-sandbox
+                --disable-dev-shm-usage
+              ],
             },
           )
         end
