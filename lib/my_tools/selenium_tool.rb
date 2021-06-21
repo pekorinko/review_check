@@ -105,14 +105,24 @@ module MyTools
       @elements.each do |element|
         review_item = element.find_element(:class_name, 'Jtu6Td')
         local_guide = element.find_element(:class_name, 'FGlxyd')
-        star_score =
-          element
-            .find_element(:class_name, 'PuaHbe')
-            .find_element(:class_name, 'Fam1ne')
-            .attribute('aria-label')
-            .scan(/\d+\.\d+?/)[
-            0
-          ].to_f
+        begin
+          star_score =
+            element
+              .find_element(:class_name, 'PuaHbe')
+              .find_element(:class_name, 'Fam1ne')
+              .attribute('aria-label')
+              .scan(/\d+\.\d+?/)[
+              0
+            ].to_f
+        rescue StandardError
+          star_score =
+            element
+              .find_element(:class_name, 'pjemBf')
+              .text
+              .scan(%r{\d+\/\d+?})[
+              0
+            ].to_f
+        end
 
         begin
           review_item.find_element(:css, '.review-more-link').click
