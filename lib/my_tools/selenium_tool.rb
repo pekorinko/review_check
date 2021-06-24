@@ -4,7 +4,8 @@ module MyTools
     def initialize(url)
       @url = url
       options = Selenium::WebDriver::Chrome::Options.new
-      options.add_argument('--headless')
+
+      # options.add_argument('--headless')
       caps =
         if Rails.env.production?
           Selenium::WebDriver::Remote::Capabilities.chrome(
@@ -37,10 +38,8 @@ module MyTools
       # begin rescueを使ってタイムアウトしたということは検索画面URLだったと判断する
       begin
         @wait.until { @driver.find_element(:class_name, 'lcorif').displayed? }
-        @driver.quit
       rescue StandardError
         replace_url_if_needed
-        @driver.quit
       end
     end
 
@@ -59,6 +58,10 @@ module MyTools
         @driver.get(@url)
         @wait.until { @driver.find_element(:class_name, 'lcorif').displayed? }
       end
+    end
+
+    def quit
+      @driver.quit
     end
 
     def get_review_count(local_guide)

@@ -41,11 +41,12 @@ class ResultsController < ApplicationController
 
     if url_validator.valid?
       begin
-        place_data_scraper = MyTools::PlaceDataScraper.new(@url)
-        place = place_data_scraper.save_place
+        @place_data_scraper = MyTools::PlaceDataScraper.new(@url)
+        place = @place_data_scraper.save_place
         place_id = place.id
-        place_data_scraper.save_review(place_id)
-        @place = place_data_scraper.save_place
+        @place_data_scraper.save_review(place_id)
+        @place = @place_data_scraper.save_place
+        @place_data_scraper.quit
         user_id = session[:user_id]
         check_credibility = MyTools::CredibilityChecker.new(place_id)
         @result = check_credibility.check(user_id)
@@ -53,6 +54,7 @@ class ResultsController < ApplicationController
       rescue StandardError => e
         logger.error(e.inspect)
         logger.error(e.backtrace.join("\n"))
+        @place_data_scraper.quit
         redirect_to root_path, alert: '口コミの取得に失敗しました'
       end
     else

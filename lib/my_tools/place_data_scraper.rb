@@ -48,5 +48,8 @@ module MyTools
         star_ave: @result[:star_ave],
       )
     end
+    def quit
+      @scrape_process.quit
+    end
   end
 end
