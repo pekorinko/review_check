@@ -58,6 +58,10 @@ module MyTools
       end
     end
 
+    def quit
+      @driver.quit
+    end
+
     def get_review_count(local_guide)
       if local_guide.find_elements(:class_name, 'A503be').size > 0
         local_guide_info = local_guide.find_element(:class_name, 'A503be')
