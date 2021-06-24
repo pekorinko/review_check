@@ -32,7 +32,7 @@ class ResultsController < ApplicationController
   end
 
   def create
-    @url = params[:url]
+    @url = localized_url(params[:url])
 
     url_filter = MyTools::UrlFilter.new(@url)
     @url = url_filter.filter
@@ -58,5 +58,13 @@ class ResultsController < ApplicationController
     else
       redirect_to root_path, alert: '不正なURLです'
     end
+  end
+
+  private
+
+  def localized_url(url)
+    a, b = url.split('#')
+    localized_query = '&gl=jp&hl=ja&gws_rd=cr&pws=0'
+    a + localized_query + '#' + b
   end
 end
