@@ -50,7 +50,9 @@ class ResultsController < ApplicationController
         check_credibility = MyTools::CredibilityChecker.new(place_id)
         @result = check_credibility.check(user_id)
         redirect_to result_path(@result)
-      rescue StandardError
+      rescue StandardError => e
+        logger.error(e.inspect)
+        logger.error(e.backtrace.join("\n"))
         redirect_to root_path, alert: '口コミの取得に失敗しました'
       end
     else
