@@ -30,7 +30,7 @@ module MyTools
         @driver = Selenium::WebDriver.for :chrome, options: options
       end
 
-      @wait = Selenium::WebDriver::Wait.new(timeout: 10)
+      @wait = Selenium::WebDriver::Wait.new(timeout: 30)
       @driver.get(@url)
       @driver.save_screenshot(Rails.root.join('public', 'test.png').to_s)
 
