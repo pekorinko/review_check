@@ -64,14 +64,19 @@ class ResultsController < ApplicationController
 
   private
 
+  # def localized_url(url)
+  #   if url.include?('#')
+  #     a, b = url.split('#')
+  #     localized_query = '&gl=jp&hl=ja&gws_rd=cr&pws=0'
+  #     return a + @localized_query + '#' + b
+  #   else
+  #     localized_query = '&gl=jp&hl=ja&gws_rd=cr&pws=0'
+  #     return url.to_s + localized_query
+  #   end
+  # end
   def localized_url(url)
-    if url.include?('#')
-      a, b = url.split('#')
-      localized_query = '&gl=jp&hl=ja&gws_rd=cr&pws=0'
-      return a + @localized_query + '#' + b
-    else
-      localized_query = '&gl=jp&hl=ja&gws_rd=cr&pws=0'
-      return url.to_s + localized_query
-    end
+    a, b = url.split('#')
+    localized_query = '&gl=jp&hl=ja&gws_rd=cr&pws=0'
+    a + localized_query + '#' + b
   end
 end
