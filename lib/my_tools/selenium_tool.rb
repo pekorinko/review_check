@@ -30,7 +30,7 @@ module MyTools
         @driver = Selenium::WebDriver.for :chrome, options: options
       end
 
-      @wait = Selenium::WebDriver::Wait.new(timeout: 15)
+      @wait = Selenium::WebDriver::Wait.new(timeout: 13)
       @driver.get(@url)
       @driver.save_screenshot(Rails.root.join('public', 'test.png').to_s)
 
@@ -53,7 +53,8 @@ module MyTools
         @driver.execute_script(
           'document.getElementsByClassName("hqzQac")[0].getElementsByTagName("a")[0].click()',
         )
-        sleep 5
+
+        # sleep 5
         @url = @driver.current_url
         @driver.get(@url)
         @driver.save_screenshot(Rails.root.join('public', 'test2.png').to_s)
