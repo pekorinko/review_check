@@ -29,7 +29,7 @@ module MyTools
         @driver = Selenium::WebDriver.for :chrome, options: options
       end
 
-      @wait = Selenium::WebDriver::Wait.new(timeout: 30)
+      @wait = Selenium::WebDriver::Wait.new(timeout: 13)
       @driver.get(@url)
 
       # モーダルが来ても検索結果が来てもページが表示されたか判別出来るなにかをする
@@ -51,7 +51,6 @@ module MyTools
         @driver.execute_script(
           'document.getElementsByClassName("hqzQac")[0].getElementsByTagName("a")[0].click()',
         )
-        sleep 5
         @url = @driver.current_url
         @driver.get(@url)
         @wait.until { @driver.find_element(:class_name, 'lcorif').displayed? }
