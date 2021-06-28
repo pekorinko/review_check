@@ -32,6 +32,7 @@ class ResultsController < ApplicationController
   end
 
   def create
+    begin
     @url = localized_url(params[:url])
 
     url_filter = MyTools::UrlFilter.new(@url)
@@ -40,7 +41,7 @@ class ResultsController < ApplicationController
     url_validator = MyTools::UrlValidator.new(@url)
 
     if url_validator.valid?
-      begin
+      # begin
         @place_data_scraper = MyTools::PlaceDataScraper.new(@url)
         place = @place_data_scraper.save_place
         place_id = place.id
