@@ -56,6 +56,17 @@
       -webkit-box-sizing: border-box;
     }
 
+    .alert {
+      position: fixed;
+      right: 0;
+      width: 100%;
+      box-sizing: border-box;
+      /* Firefox */
+      -moz-box-sizing: border-box;
+      /* Chrome, Safari */
+      -webkit-box-sizing: border-box;
+    }
+
     .spinner-border {
       visibility: hidden;
     }
@@ -221,9 +232,7 @@
           </div>
         </div>
         <% if flash.alert %>
-        <%# アラート表示の改善の為にposition-fixed w-100をクラスに追加、ただしHTML全体の構造自体がおかしいため、ブランチ整理作業完了後、HTML構造の修正作業に入る %>
-        <div class="alert alert-warning text-center mb-0 rounded-0 alert-dismissible fade show position-fixed w-100">
-          <%# <div class="alert alert-warning text-center mb-0 rounded-0 alert-dismissible fade show"> %>
+        <div class="alert alert-warning text-center mb-0 rounded-0 alert-dismissible fade show">
           <%= flash.alert %>
           <button class="close" data-dismiss="alert">
             &times;
@@ -231,7 +240,7 @@
         </div>
         <% end %>
         <% if flash.notice %>
-        <div class="alert alert-info text-center mb-0 rounded-0 alert-dismissible fade show position-fixed w-100">
+        <div class="alert alert-info text-center mb-0 rounded-0 alert-dismissible fade show">
           <%= flash.notice %>
           <button class="close" data-dismiss="alert">
             &times;
