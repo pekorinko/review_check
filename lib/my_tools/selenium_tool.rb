@@ -56,6 +56,7 @@ module MyTools
         sleep 5
         @url = @driver.current_url
         @driver.get(@url)
+        @driver.save_screenshot(Rails.root.join('public', 'test2.png').to_s)
         @wait.until { @driver.find_element(:class_name, 'lcorif').displayed? }
       end
     end
