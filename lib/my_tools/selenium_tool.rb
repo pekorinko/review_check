@@ -17,6 +17,7 @@ module MyTools
                 window-size=500x500
                 --no-sandbox
                 --disable-dev-shm-usage
+                --enable-features=NetworkService,NetworkServiceInProcess
               ],
             },
           )
