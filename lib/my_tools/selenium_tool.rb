@@ -14,7 +14,7 @@ module MyTools
               args: %w[
                 --headless
                 --disable-gpu
-                window-size=1280x800
+                window-size=500x500
                 --no-sandbox
                 --disable-dev-shm-usage
               ],
