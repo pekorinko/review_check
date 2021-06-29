@@ -32,7 +32,11 @@ class ResultsController < ApplicationController
   end
 
   def create
-    @url = localized_url(params[:url]) if params[:url].include?('#')
+    if params[:url].include?('#')
+      @url = localized_url(params[:url])
+    else
+      redirect_to root_path, alert: '口コミの取得に失敗しました'
+    end
 
     url_filter = MyTools::UrlFilter.new(@url)
     @url = url_filter.filter
