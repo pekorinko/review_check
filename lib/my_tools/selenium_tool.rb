@@ -30,7 +30,7 @@ module MyTools
         @driver = Selenium::WebDriver.for :chrome, options: options
       end
 
-      @wait = Selenium::WebDriver::Wait.new(timeout: 13)
+      @wait = Selenium::WebDriver::Wait.new(timeout: 10)
       @driver.get(@url)
 
       # モーダルが来ても検索結果が来てもページが表示されたか判別出来るなにかをする

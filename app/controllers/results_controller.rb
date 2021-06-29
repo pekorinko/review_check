@@ -54,7 +54,6 @@ class ResultsController < ApplicationController
       rescue StandardError => e
         logger.error(e.inspect)
         logger.error(e.backtrace.join("\n"))
-        @place_data_scraper.quit
         redirect_to root_path, alert: '口コミの取得に失敗しました'
       end
     else
@@ -65,8 +64,13 @@ class ResultsController < ApplicationController
   private
 
   def localized_url(url)
-    a, b = url.split('#')
-    localized_query = '&gl=jp&hl=ja&gws_rd=cr&pws=0'
-    a + localized_query + '#' + b
+    if url.include?('#')
+      a, b = url.split('#')
+      localized_query = '&gl=jp&hl=ja&gws_rd=cr&pws=0'
+      a + localized_query + '#' + b
+    else
+      localized_query = '&gl=jp&hl=ja&gws_rd=cr&pws=0'
+      url.to_s + localized_query
+    end
   end
 end
