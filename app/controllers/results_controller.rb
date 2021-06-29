@@ -35,7 +35,7 @@ class ResultsController < ApplicationController
     if params[:url].include?('#')
       @url = localized_url(params[:url])
     else
-      redirect_to root_path, alert: '口コミの取得に失敗しました'
+      @url = params[:url]
     end
 
     url_filter = MyTools::UrlFilter.new(@url)
@@ -58,7 +58,8 @@ class ResultsController < ApplicationController
       rescue StandardError => e
         logger.error(e.inspect)
         logger.error(e.backtrace.join("\n"))
-        @place_data_scraper.quit
+
+        # @place_data_scraper.quit
         redirect_to root_path, alert: '口コミの取得に失敗しました'
       end
     else
@@ -79,12 +80,8 @@ class ResultsController < ApplicationController
   #   end
   # end
   def localized_url(url)
-    if url.include?('#')
-      a, b = url.split('#')
-      localized_query = '&gl=jp&hl=ja&gws_rd=cr&pws=0'
-      a + localized_query + '#' + b
-    else
-      redirect_to root_path, alert: '口コミの取得に失敗しました'
-    end
+    a, b = url.split('#')
+    localized_query = '&gl=jp&hl=ja&gws_rd=cr&pws=0'
+    a + localized_query + '#' + b
   end
 end
