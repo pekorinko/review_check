@@ -54,7 +54,6 @@ class ResultsController < ApplicationController
       rescue StandardError => e
         logger.error(e.inspect)
         logger.error(e.backtrace.join("\n"))
-        @place_data_scraper.quit
         redirect_to root_path, alert: '口コミの取得に失敗しました'
       end
     else
