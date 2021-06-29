@@ -32,7 +32,7 @@ class ResultsController < ApplicationController
   end
 
   def create
-    @url = localized_url(params[:url]) if url.include?('#')
+    @url = localized_url(params[:url]) if params[:url].include?('#')
 
     url_filter = MyTools::UrlFilter.new(@url)
     @url = url_filter.filter
