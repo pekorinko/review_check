@@ -5,8 +5,32 @@ module MyTools
       @url = url
       options = Selenium::WebDriver::Chrome::Options.new
       options.add_argument('--headless')
-      @driver = Selenium::WebDriver.for :chrome, options: options
-      @wait = Selenium::WebDriver::Wait.new(timeout: 30)
+      caps =
+        if Rails.env.production?
+          Selenium::WebDriver::Remote::Capabilities.chrome(
+            'chromeOptions' => {
+              binary: ENV['GOOGLE_CHROME_SHIM'],
+              args: %w[
+                --headless
+                --disable-gpu
+                window-size=1280x800
+                --no-sandbox
+                --disable-dev-shm-usage
+                --enable-features=NetworkService,NetworkServiceInProcess
+              ],
+            },
+          )
+        end
+      if Rails.env.production?
+        @driver =
+          Selenium::WebDriver.for :chrome,
+                                  options: options,
+                                  desired_capabilities: caps
+      else
+        @driver = Selenium::WebDriver.for :chrome, options: options
+      end
+
+      @wait = Selenium::WebDriver::Wait.new(timeout: 13)
       @driver.get(@url)
 
       # モーダルが来ても検索結果が来てもページが表示されたか判別出来るなにかをする
@@ -28,11 +52,14 @@ module MyTools
         @driver.execute_script(
           'document.getElementsByClassName("hqzQac")[0].getElementsByTagName("a")[0].click()',
         )
-        sleep 5
         @url = @driver.current_url
         @driver.get(@url)
         @wait.until { @driver.find_element(:class_name, 'lcorif').displayed? }
       end
+    end
+
+    def quit
+      @driver.quit
     end
 
     def get_review_count(local_guide)
